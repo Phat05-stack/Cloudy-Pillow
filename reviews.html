@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>รีวิวสินค้า | Cloudy Pillow</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Prompt', 'Inter', sans-serif;
+      background: linear-gradient(135deg, #FDF8FA 0%, #FAF5FF 48%, #FDECE6 100%);
+      color: #2D2438;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen overflow-x-hidden">
+
+  <!-- แถบประกาศด้านบนสุด -->
+  <div class="w-full bg-gradient-to-r from-[#8B5CF6] via-[#9333EA] to-[#A855F7] text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium shadow-xs">
+    ✨ ฉลองเปิดร้านใหม่! จัดส่งฟรีทั่วประเทศทุกออเดอร์ | แถมฟรีสเปรย์ฉีดหมอนลาเวนเดอร์เมื่อชำระผ่าน PromptPay 💕
+  </div>
+
+  <!-- แบนเนอร์ภาพหลักด้านบน -->
+  <div class="w-full bg-purple-100/50 overflow-hidden border-b border-purple-100">
+    <img
+      src="Pic/banner.jpg"
+      alt="แบนเนอร์ร้าน Cloudy Pillow"
+      class="w-full max-h-[240px] sm:max-h-[340px] lg:max-h-[420px] object-cover object-center block"
+    />
+  </div>
+
+  <!-- แถบเมนูนำทางหลัก -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-purple-100/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3 group shrink-0">
+          <img
+            src="Pic/LOGO.jpg"
+            alt="โลโก้ร้าน Cloudy Pillow"
+            class="w-20 h-20 rounded-full object-cover border-2 border-pink-200/80 shadow-sm group-hover:scale-105 transition-transform bg-white"
+          />
+          <div>
+            <div class="text-xl font-bold tracking-tight leading-none">
+              <span class="text-[#2D2438]">Cloudy</span><span class="text-[#F48FB1]">Pillow</span>
+            </div>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 tracking-wider uppercase mt-1">
+              SOFT PILLOWS 💕 BETTER DAYS
+            </p>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a href="index.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <span>🏠</span> หน้าหลัก
+          </a>
+          <a href="products.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <span>🛍️</span> สินค้าทั้งหมด
+          </a>
+          <a href="reviews.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-purple-50 text-purple-700 border border-purple-200/80 font-semibold text-sm">
+            <span>⭐</span> รีวิวสินค้า
+          </a>
+          <a href="contact.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <span>💬</span> ติดต่อร้านค้า
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5">
+          <a
+            href="login.html"
+            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-purple-700 border border-slate-200/80 text-sm font-medium transition"
+          >
+            <span>👤</span>
+            <span>เข้าสู่ระบบ</span>
+          </a>
+
+          <a
+            href="cart.html"
+            class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-[#F48FB1] to-[#F06292] hover:opacity-95 text-white text-sm font-medium shadow-md shadow-pink-200/80 transition"
+          >
+            <span>🛒</span>
+            <span>ตะกร้าสินค้า</span>
+            <span class="bg-white text-pink-600 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+          </a>
+
+          <button
+            type="button"
+            id="mobile-menu-btn"
+            aria-label="เปิดเมนู"
+            class="lg:hidden p-2.5 rounded-full bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200/70 transition"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-purple-100 px-4 pt-3 pb-5 space-y-1.5 shadow-lg">
+      <a href="index.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>🏠</span> หน้าหลัก</a>
+      <a href="products.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>🛍️</span> สินค้าทั้งหมด</a>
+      <a href="reviews.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-purple-50 text-purple-700 font-semibold text-sm"><span>⭐</span> รีวิวสินค้า</a>
+      <a href="contact.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>💬</span> ติดต่อร้านค้า</a>
+      <a href="cart.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>🛒</span> ตะกร้าสินค้า</a>
+      <a href="login.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>👤</span> หน้าล็อคอิน</a>
+    </div>
+  </header>
+
+  <!-- เนื้อหาหลักหน้ารีวิวสินค้า -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-10">
+
+    <!-- สรุปคะแนนรีวิวจากผู้ซื้อจริง -->
+    <section class="bg-white/95 rounded-[2rem] p-6 sm:p-10 border border-purple-100 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-5 text-center lg:text-left space-y-2">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-pink-50 text-pink-600 text-xs font-semibold">
+          💕 Verified Customer Reviews
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-bold text-[#2D2438]">
+          ความประทับใจจากผู้ใช้งานจริง
+        </h1>
+        <p class="text-sm text-slate-500">
+          การันตีความนุ่มสบายจากลูกค้ากว่า 1,350+ ออเดอร์ทั่วประเทศ
+        </p>
+      </div>
+
+      <div class="lg:col-span-7 flex flex-col sm:flex-row items-center justify-around gap-6 bg-gradient-to-r from-purple-50/80 to-pink-50/80 rounded-3xl p-6 border border-purple-100/70">
+        <div class="text-center">
+          <div class="text-5xl font-extrabold text-purple-700">4.9</div>
+          <div class="text-amber-400 text-lg mt-1">★★★★★</div>
+          <p class="text-xs text-slate-500 mt-1">จากทั้งหมด 1,370 รีวิว</p>
+        </div>
+
+        <div class="w-full max-w-xs space-y-2 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-8 font-semibold">5 ★</span>
+            <div class="flex-grow h-2.5 bg-white rounded-full overflow-hidden">
+              <div class="h-full bg-purple-500 rounded-full" style="width: 92%"></div>
+            </div>
+            <span class="w-9 text-right text-slate-500">92%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-8 font-semibold">4 ★</span>
+            <div class="flex-grow h-2.5 bg-white rounded-full overflow-hidden">
+              <div class="h-full bg-pink-400 rounded-full" style="width: 7%"></div>
+            </div>
+            <span class="w-9 text-right text-slate-500">7%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-8 font-semibold">3 ★</span>
+            <div class="flex-grow h-2.5 bg-white rounded-full overflow-hidden">
+              <div class="h-full bg-slate-300 rounded-full" style="width: 1%"></div>
+            </div>
+            <span class="w-9 text-right text-slate-500">1%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- รายการรีวิว + ฟอร์มเขียนรีวิวใหม่ -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- คอลัมน์ซ้าย: การ์ดรีวิว -->
+      <div id="reviews-list" class="lg:col-span-7 space-y-4">
+        <!-- Render จาก JS -->
+      </div>
+
+      <!-- คอลัมน์ขวา: ฟอร์มเขียนรีวิว -->
+      <div class="lg:col-span-5 bg-white/95 rounded-3xl p-6 sm:p-7 border border-purple-100 shadow-xs sticky top-24">
+        <h2 class="text-xl font-bold text-[#2D2438]">✍️ แบ่งปันรีวิวของคุณ</h2>
+        <p class="text-xs text-slate-500 mt-1">บอกเล่าประสบการณ์การนอนกับหมอน Cloudy Pillow</p>
+
+        <form id="review-form" class="mt-5 space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">ชื่อผู้รีวิว</label>
+            <input
+              type="text"
+              id="reviewer-name"
+              required
+              placeholder="เช่น คุณพลอยใส"
+              class="w-full px-4 py-2.5 rounded-xl border border-purple-100 bg-purple-50/30 text-sm focus:outline-none focus:border-purple-400"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">รุ่นหมอนที่สั่งซื้อ</label>
+            <select
+              id="review-product"
+              class="w-full px-4 py-2.5 rounded-xl border border-purple-100 bg-purple-50/30 text-sm focus:outline-none focus:border-purple-400"
+            >
+              <option value="Cloudy Ergo Neck Pillow">Cloudy Ergo Neck Pillow</option>
+              <option value="Fluffy Cloud Down Pillow">Fluffy Cloud Down Pillow</option>
+              <option value="Pure Latex Pastel Pillow">Pure Latex Pastel Pillow</option>
+              <option value="Butterfly Wing Sleep Pillow">Butterfly Wing Sleep Pillow</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">คะแนนความพึงพอใจ</label>
+            <select
+              id="review-rating"
+              class="w-full px-4 py-2.5 rounded-xl border border-purple-100 bg-purple-50/30 text-sm focus:outline-none focus:border-purple-400"
+            >
+              <option value="5">★★★★★ (5.0 - นุ่มสบายมาก ประทับใจสุดๆ)</option>
+              <option value="4">★★★★☆ (4.0 - นอนสบาย คุณภาพดี)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">ข้อความรีวิว</label>
+            <textarea
+              id="review-text"
+              rows="3"
+              required
+              placeholder="เขียนความรู้สึกหลังใช้งาน..."
+              class="w-full px-4 py-2.5 rounded-xl border border-purple-100 bg-purple-50/30 text-sm focus:outline-none focus:border-purple-400"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3 rounded-2xl bg-gradient-to-r from-[#A78BFA] to-[#F48FB1] hover:opacity-95 text-white font-semibold text-sm shadow-md shadow-purple-200 transition cursor-pointer"
+          >
+            ส่งรีวิวสินค้า ✨
+          </button>
+        </form>
+
+        <div id="review-success" class="hidden mt-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-medium">
+          ✅ ขอบคุณสำหรับรีวิวของคุณ! ข้อความถูกแสดงในรายการเรียบร้อยแล้ว
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white/90 border-t border-purple-100 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-5">
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
+        <a href="index.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">หน้าหลัก</a>
+        <a href="products.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">สินค้าทั้งหมด</a>
+        <a href="reviews.html" class="px-3.5 py-1.5 rounded-full bg-purple-100 text-purple-700 font-semibold">รีวิวสินค้า</a>
+        <a href="contact.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">ติดต่อร้านค้า</a>
+        <a href="cart.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">ตะกร้าสินค้า</a>
+        <a href="login.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">หน้าล็อคอิน</a>
+      </div>
+      <p class="text-center text-xs text-slate-400">© 2026 Cloudy Pillow Thailand • Soft Pillows 💕 Better Days</p>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    }
+
+    const reviewsData = [
+      {
+        name: 'คุณมินตรา พ.',
+        initial: 'ม',
+        product: 'Cloudy Ergo Neck Pillow',
+        rating: 5,
+        date: '2 วันที่แล้ว',
+        comment: 'ปกติตื่นมาจะปวดต้นคอทุกเช้า พอเปลี่ยนมาใช้รุ่น Ergo รู้สึกเลยว่าหมอนรับพอดีกับต้นคอมาก นุ่มแต่ไม่ยวบ ปลอกหมอนสีพาสเทลน่ารักตรงปกสุดๆ ค่ะ 💕'
+      },
+      {
+        name: 'คุณธนกฤต ว.',
+        initial: 'ธ',
+        product: 'Fluffy Cloud Down Pillow',
+        rating: 5,
+        date: '5 วันที่แล้ว',
+        comment: 'ฟีลเหมือนหมอนโรงแรมห้าดาวจริงๆ ครับ ฟูเด้งคืนตัวไว แถมสเปรย์ฉีดหมอนกลิ่นลาเวนเดอร์หอมผ่อนคลายมาก หลับสนิทขึ้นเยอะเลย'
+      },
+      {
+        name: 'คุณณัฐณิชา ส.',
+        initial: 'ณ',
+        product: 'Pure Latex Pastel Pillow',
+        rating: 5,
+        date: '1 สัปดาห์ที่แล้ว',
+        comment: 'สั่งใบที่ 2 ให้คุณแม่แล้วค่ะ หมอนยางพาราไม่เหม็นกลิ่นยางเลย นอนเย็นสบายไม่ร้อนหัว แพ็กเกจร้านน่ารักมาก ส่งไวด้วยค่ะ ☁️'
+      }
+    ];
+
+    function renderReviews() {
+      const container = document.getElementById('reviews-list');
+      container.innerHTML = reviewsData.map(r => `
+        <div class="bg-white/95 rounded-3xl p-6 border border-purple-100 shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-200 to-pink-200 text-purple-800 font-bold flex items-center justify-center text-sm">
+                ${r.initial}
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-sm text-[#2D2438]">${r.name}</span>
+                  <span class="text-[11px] bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full font-medium">✓ ผู้ซื้อจริง</span>
+                </div>
+                <span class="text-xs text-slate-400">${r.date}</span>
+              </div>
+            </div>
+            <div class="text-amber-400 text-sm">${'★'.repeat(r.rating)}</div>
+          </div>
+          <div class="inline-block px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-medium">
+            รุ่น: ${r.product}
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed">${r.comment}</p>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('review-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('reviewer-name').value.trim();
+      const product = document.getElementById('review-product').value;
+      const rating = parseInt(document.getElementById('review-rating').value, 10);
+      const comment = document.getElementById('review-text').value.trim();
+
+      reviewsData.unshift({
+        name,
+        initial: name.charAt(0),
+        product,
+        rating,
+        date: 'เมื่อสักครู่',
+        comment
+      });
+
+      renderReviews();
+      e.target.reset();
+      const successBox = document.getElementById('review-success');
+      successBox.classList.remove('hidden');
+      setTimeout(() => successBox.classList.add('hidden'), 4000);
+    });
+
+    renderReviews();
+  </script>
+  <script src="script.js"></script>
+</body>
+</body>
+</html>
