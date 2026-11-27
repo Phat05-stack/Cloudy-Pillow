@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>หน้าหลัก | Cloudy Pillow - หมอนเพื่อสุขภาพสไตล์มินิมอลพาสเทล</title>
+
+  <!-- โหลด Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- โหลดฟอนต์ Prompt และ Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Prompt', 'Inter', sans-serif;
+      background: linear-gradient(135deg, #FDF8FA 0%, #FAF5FF 48%, #FDECE6 100%);
+      color: #2D2438;
+      min-height: 100vh;
+    }
+    .text-gradient-pastel {
+      background: linear-gradient(90deg, #B57EDC 0%, #E082C8 50%, #F48FB1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .banner-card {
+      background: linear-gradient(145deg, #F5ECFF 0%, #FDF2F8 55%, #FCE7F3 100%);
+      box-shadow: 0 22px 50px -15px rgba(168, 85, 247, 0.16);
+    }
+    @keyframes floatCloud {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+    .animate-float {
+      animation: floatCloud 3.6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen overflow-x-hidden">
+
+  <!-- 1. แถบประกาศโปรโมชันด้านบนสุด -->
+  <div class="w-full bg-gradient-to-r from-[#8B5CF6] via-[#9333EA] to-[#A855F7] text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium shadow-xs">
+    ✨ ฉลองเปิดร้านใหม่! จัดส่งฟรีทั่วประเทศทุกออเดอร์ | แถมฟรีสเปรย์ฉีดหมอนลาเวนเดอร์เมื่อชำระผ่าน PromptPay 💕
+  </div>
+
+  <!-- แบนเนอร์ภาพหลักด้านบน -->
+  <div id="top-banner-wrapper" class="w-full bg-purple-100/50 overflow-hidden border-b border-purple-100">
+    <img
+      id="top-banner-img"
+      src="Pic/banner.jpg"
+      alt="แบนเนอร์ร้าน Cloudy Pillow"
+      class="w-full max-h-[240px] sm:max-h-[340px] lg:max-h-[420px] object-cover object-center block"
+    />
+  </div>
+
+  <!-- 2. แถบเมนูนำทางหลัก -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-purple-100/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- โลโก้ร้าน Cloudy Pillow -->
+        <a href="index.html" class="flex items-center gap-3 group shrink-0">
+          <img
+            src="Pic/LOGO.jpg"
+            alt="โลโก้ร้าน Cloudy Pillow"
+            class="w-20 h-20 rounded-full object-cover border-2 border-pink-200/80 shadow-sm group-hover:scale-105 transition-transform bg-white"
+          />
+          <div>
+            <div class="text-xl font-bold tracking-tight leading-none">
+              <span class="text-[#2D2438]">Cloudy</span><span class="text-[#F48FB1]">Pillow</span>
+            </div>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 tracking-wider uppercase mt-1">
+              SOFT PILLOWS 💕 BETTER DAYS
+            </p>
+          </div>
+        </a>
+
+        <!-- เมนูหลักบนหน้าจอ Desktop -->
+        <nav class="hidden lg:flex items-center gap-2">
+          <a href="index.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-purple-50 text-purple-700 border border-purple-200/80 font-semibold text-sm">
+            <span>🏠</span> หน้าหลัก
+          </a>
+          <a href="products.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <span>🛍️</span> สินค้าทั้งหมด
+          </a>
+          <a href="reviews.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <span>⭐</span> รีวิวสินค้า
+          </a>
+          <a href="contact.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <span>💬</span> ติดต่อร้านค้า
+          </a>
+        </nav>
+
+        <!-- ปุ่มด้านขวา: หน้าล็อคอิน + ตะกร้าสินค้า -->
+        <div class="flex items-center gap-2.5">
+          <a
+            href="login.html"
+            title="เข้าสู่ระบบ / สมัครสมาชิก"
+            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-purple-700 border border-slate-200/80 text-sm font-medium transition"
+          >
+            <span>👤</span>
+            <span>เข้าสู่ระบบ</span>
+          </a>
+
+          <a
+            id="nav-cart-link"
+            href="cart.html"
+            class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-[#F48FB1] to-[#F06292] hover:opacity-95 text-white text-sm font-medium shadow-md shadow-pink-200/80 transition"
+          >
+            <span>🛒</span>
+            <span>ตะกร้าสินค้า</span>
+            <span id="cart-badge" class="bg-white text-pink-600 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+          </a>
+
+          <!-- ปุ่มเปิดเมนูบนมือถือ -->
+          <button
+            type="button"
+            id="mobile-menu-btn"
+            aria-label="เปิดเมนู"
+            class="lg:hidden p-2.5 rounded-full bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200/70 transition"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- เมนู Dropdown สำหรับมือถือ -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-purple-100 px-4 pt-3 pb-5 space-y-1.5 shadow-lg">
+      <a href="index.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-purple-50 text-purple-700 font-semibold text-sm"><span>🏠</span> หน้าหลัก</a>
+      <a href="products.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>🛍️</span> สินค้าทั้งหมด</a>
+      <a href="reviews.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>⭐</span> รีวิวสินค้า</a>
+      <a href="contact.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>💬</span> ติดต่อร้านค้า</a>
+      <a href="cart.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>🛒</span> ตะกร้าสินค้า</a>
+      <a href="login.html" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium"><span>👤</span> หน้าล็อคอิน</a>
+    </div>
+  </header>
+
+  <!-- 3. เนื้อหาหลักหน้าแรก (Hero Section) -->
+  <main class="flex-grow">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <!-- ฝั่งซ้าย: ข้อความโปรโมตและปุ่มกด -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-purple-100 shadow-2xs text-xs sm:text-sm font-medium text-purple-700">
+            <span class="w-2 h-2 rounded-full bg-pink-300"></span>
+            <span>☁️ Good Sleep, Brighter Tomorrow</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.18] tracking-tight">
+            <span class="block text-[#2D2438]">สัมผัสความนุ่มฟู...</span>
+            <span class="block text-gradient-pastel mt-1">นอนสบายเหมือนบนก้อนเมฆ</span>
+          </h1>
+
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl">
+            หมอนเพื่อสุขภาพสไตล์มินิมอลพาสเทล ออกแบบเฉพาะตามหลักสรีรศาสตร์ ช่วยโอบรับกระดูกคอ
+            ลดอาการปวดบ่าไหล่ ให้ทุกคืนเป็นการพักผ่อนที่ดีที่สุดของคุณ 💕
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href="products.html"
+              class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-[#A78BFA] to-[#C084FC] hover:from-[#9061F9] hover:to-[#A855F7] text-white font-medium text-sm sm:text-base shadow-lg shadow-purple-200/80 transition transform hover:-translate-y-0.5"
+            >
+              <span>🛒 เลือกซื้อหมอนทั้งหมด</span>
+            </a>
+
+            <a
+              href="reviews.html"
+              class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-white hover:bg-pink-50/70 text-[#2D2438] font-medium text-sm sm:text-base border border-pink-200 shadow-2xs transition"
+            >
+              <span>⭐ ดูรีวิวจากลูกค้าจริง</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ฝั่งขวา: การ์ด Cloudy Pillow Official Banner -->
+        <div class="lg:col-span-6 flex justify-center lg:justify-end">
+          <div class="banner-card w-full max-w-md p-6 sm:p-8 rounded-[2.2rem] border-4 border-white relative">
+            <p class="text-xs sm:text-sm italic text-purple-400/90 font-medium leading-snug">
+              Good Sleep<br />Brighter Tomorrow ♡
+            </p>
+
+            <!-- ไอคอนก้อนเมฆน่ารักตรงกลาง -->
+            <div class="my-8 flex flex-col items-center text-center">
+              <div class="animate-float mb-4">
+                <svg class="w-28 h-20 drop-shadow-sm" viewBox="0 0 140 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M36 78H105C119.359 78 131 66.3594 131 52C131 38.4945 120.703 27.3924 107.523 26.1205C102.771 13.7689 90.7995 5 76.8 5C61.2699 5 48.2738 15.7927 44.8726 30.2647C42.0637 29.4426 39.0853 29 36 29C19.4315 29 6 42.4315 6 59C6 75.5685 19.4315 78 36 78Z" fill="white" stroke="#B794F4" stroke-width="3.5" />
+                  <!-- พระจันทร์เสี้ยวสีเหลืองพาสเทล -->
+                  <circle cx="96" cy="24" r="9" fill="#FDE047" />
+                  <circle cx="100" cy="21" r="7" fill="white" />
+                  <!-- ตาและแก้ม -->
+                  <circle cx="57" cy="52" r="2.8" fill="#4C1D95" />
+                  <circle cx="83" cy="52" r="2.8" fill="#4C1D95" />
+                  <ellipse cx="48" cy="57" rx="4.5" ry="2.8" fill="#FBCFE8" />
+                  <ellipse cx="92" cy="57" rx="4.5" ry="2.8" fill="#FBCFE8" />
+                  <path d="M66 55C67.5 58 72.5 58 74 55" stroke="#4C1D95" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+              </div>
+
+              <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                <span class="text-[#A78BFA]">Cloudy</span> <span class="text-[#F48FB1]">Pillow</span>
+              </h2>
+
+              <div class="mt-3 inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-white/90 border border-pink-100 text-xs font-semibold text-slate-600 shadow-2xs">
+                <span>💕 Soft Pillows</span>
+                <span>•</span>
+                <span>Better Days 💕</span>
+              </div>
+            </div>
+
+            <!-- แถบขาวด้านล่างของการ์ด -->
+            <div class="bg-white rounded-2xl px-4 py-3 shadow-sm border border-purple-100/80 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-300"></span>
+                <span class="text-xs font-bold text-[#2D2438]">Cloudy Pillow Official Banner</span>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-purple-50 text-purple-600 text-[11px] font-semibold">
+                Soft Pillows 💕 Better Days
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. ส่วนแนะนำสินค้าขายดีประจำร้าน (ใส่รูปภาพได้ทั้ง 3 ช่อง) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 bg-purple-100/70 px-3 py-1 rounded-full">
+            Best Sellers ✨
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-[#2D2438] mt-2">
+            หมอนรุ่นยอดนิยมของร้าน Cloudy Pillow
+          </h2>
+        </div>
+        <a href="products.html" class="text-sm font-semibold text-purple-700 hover:text-pink-600 transition">
+          ดูสินค้าทั้งหมด 6 รุ่น →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- สินค้าแนะนำ 1: เปลี่ยนชื่อไฟล์รูปตรง src="Pic/..." ได้เลย -->
+        <div class="bg-white/90 rounded-3xl p-5 border border-purple-100 shadow-xs hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="h-44 rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center relative overflow-hidden p-3">
+              <span class="z-10 absolute top-3 left-3 bg-pink-500 text-white text-[11px] font-semibold px-3 py-1 rounded-full">ขายดีอันดับ 1</span>
+              <img
+                src="Pic/รองคอฟ้า.jpg"
+                alt="Cloudy Sky Starry Neck Pillow"
+                onerror="this.src='https://placehold.co/320x200/FAF5FF/9333EA?text=Cloudy+Sky+Starry+Neck+Pillow';"
+                class="w-full h-full object-contain rounded-xl"
+              />
+            </div>
+            <div class="mt-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-lg text-[#2D2438]">Cloudy Sky Starry Neck Pillow</h3>
+                <span class="text-xs text-amber-500 font-semibold">★ 4.9</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              ผ้าฝ้ายสีฟ้าอ่อนพิมพ์ลายดวงดาวสีขาวและเหลืองนวล น่ารักสดใส พกพาขึ้นเครื่องบินสะดวก
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-purple-50 flex items-center justify-between">
+            <div>
+              <span class="text-xs text-slate-400 line-through">฿350</span>
+              <p class="text-lg font-bold text-purple-700">฿229</p>
+            </div>
+            <button
+              type="button"
+              onclick="addToCart('neck-3', 'Cloudy Sky Starry Neck Pillow', 229, 'Pic/รองคอฟ้า.jpg')"
+              class="px-4 py-2 rounded-xl bg-purple-100 hover:bg-purple-600 text-purple-700 hover:text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+            >
+              + เพิ่มลงตะกร้า
+            </button>
+          </div>
+        </div>
+
+        <!-- สินค้าแนะนำ 2: เปลี่ยนชื่อไฟล์รูปตรง src="Pic/..." ได้เลย -->
+        <div class="bg-white/90 rounded-3xl p-5 border border-purple-100 shadow-xs hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="h-44 rounded-2xl bg-gradient-to-br from-pink-50 to-amber-50 flex items-center justify-center relative overflow-hidden p-3">
+              <span class="z-10 absolute top-3 left-3 bg-purple-500 text-white text-[11px] font-semibold px-3 py-1 rounded-full">นุ่มฟูพิเศษ</span>
+              <img
+                src="Pic/หมอนหนุนขาว.jpg"
+                alt="Fluffy Cloud Down Pillow"
+                onerror="this.src='https://placehold.co/320x200/FDF2F8/A855F7?text=Fluffy+Cloud+Down+Pillow';"
+                class="w-full h-full object-contain rounded-xl"
+              />
+            </div>
+            <div class="mt-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-lg text-[#2D2438]">Fluffy Cloud Down Pillow</h3>
+                <span class="text-xs text-amber-500 font-semibold">★ 5.0</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                หมอนขนห่านเทียมไมโครเจล สัมผัสนุ่มละมุนเหมือนโรงแรม 5 ดาว
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-purple-50 flex items-center justify-between">
+            <div>
+              <span class="text-xs text-slate-400 line-through">฿550</span>
+              <p class="text-lg font-bold text-purple-700">฿359</p>
+            </div>
+            <button
+              type="button"
+              onclick="addToCart('pillow-1', 'Fluffy Cloud Down Pillow', 359, 'Pic/หมอนหนุนขาว.jpg')"
+              class="px-4 py-2 rounded-xl bg-purple-100 hover:bg-purple-600 text-purple-700 hover:text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+            >
+              + เพิ่มลงตะกร้า
+            </button>
+          </div>
+        </div>
+
+        <!-- สินค้าแนะนำ 3: เปลี่ยนชื่อไฟล์รูปตรง src="Pic/..." ได้เลย -->
+        <div class="bg-white/90 rounded-3xl p-5 border border-purple-100 shadow-xs hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="h-44 rounded-2xl bg-gradient-to-br from-sky-50 to-purple-50 flex items-center justify-center relative overflow-hidden p-3">
+              <span class="z-10 absolute top-3 left-3 bg-emerald-500 text-white text-[11px] font-semibold px-3 py-1 rounded-full">กันไรฝุ่น 100%</span>
+              <img
+                src="Pic/หมอนผ้าห่มขาว.jpg"
+                alt="Pure Latex Pastel Pillow"
+                onerror="this.src='https://placehold.co/320x200/F0FDF4/10B981?text=Pure+Latex+Pastel+Pillow';"
+                class="w-full h-full object-contain rounded-xl"
+              />
+            </div>
+            <div class="mt-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-lg text-[#2D2438]">Pure Latex Pastel Pillow</h3>
+                <span class="text-xs text-amber-500 font-semibold">★ 4.9</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                หมอนยางพาราแท้ฉีดขึ้นรูป ระบายอากาศดีเยี่ยม ไม่ยุบตัวตลอดอายุการใช้งาน
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-purple-50 flex items-center justify-between">
+            <div>
+              <span class="text-xs text-slate-400 line-through">฿690</span>
+              <p class="text-lg font-bold text-purple-700">฿459</p>
+            </div>
+            <button
+              type="button"
+              onclick="addToCart('blanket-1', 'Pure Latex Pastel Pillow', 459, 'Pic/หมอนผ้าห่มขาว.jpg')"
+              class="px-4 py-2 rounded-xl bg-purple-100 hover:bg-purple-600 text-purple-700 hover:text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+            >
+              + เพิ่มลงตะกร้า
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 5. ส่วนท้ายเว็บไซต์ -->
+  <footer class="bg-white/90 border-t border-purple-100 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-5">
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
+        <a href="index.html" class="px-3.5 py-1.5 rounded-full bg-purple-100 text-purple-700 font-semibold">หน้าหลัก</a>
+        <a href="products.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">สินค้าทั้งหมด</a>
+        <a href="reviews.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">รีวิวสินค้า</a>
+        <a href="contact.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">ติดต่อร้านค้า</a>
+        <a href="cart.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">ตะกร้าสินค้า</a>
+        <a href="login.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">หน้าล็อคอิน</a>
+      </div>
+      <p class="text-center text-xs text-slate-400">
+        © 2026 Cloudy Pillow Thailand • Soft Pillows 💕 Better Days
+      </p>
+    </div>
+  </footer>
+
+  <!-- กล่องแจ้งเตือนเมื่อเพิ่มสินค้าลงตะกร้า -->
+  <div id="toast-box" class="fixed bottom-5 right-5 z-50 hidden bg-white border border-pink-200 shadow-xl rounded-2xl px-5 py-3.5 flex items-center gap-3">
+    <span class="text-xl">☁️</span>
+    <div>
+      <p id="toast-text" class="text-xs sm:text-sm font-semibold text-[#2D2438]">เพิ่มสินค้าลงตะกร้าแล้ว!</p>
+      <a id="toast-cart-link" href="cart.html" class="text-xs text-pink-600 font-semibold hover:underline">คลิกเพื่อดูตะกร้าสินค้า →</a>
+    </div>
+  </div>
+
+  <script>
+    // ระบบค้นหาไฟล์รูปแบนเนอร์อัตโนมัติ
+    (function loadBannerImage() {
+      const bannerImg = document.getElementById('top-banner-img');
+      const bannerWrapper = document.getElementById('top-banner-wrapper');
+      if (!bannerImg || !bannerWrapper) return;
+
+      const candidates = [
+        'Pic/banner.jpg',
+        'Pic/banner.png',
+        'Pic/banner.jpeg',
+        'banner.jpg',
+        'banner.png'
+      ];
+      let index = 0;
+
+      bannerImg.onerror = function () {
+        index++;
+        if (index < candidates.length) {
+          bannerImg.src = candidates[index];
+        } else {
+          bannerWrapper.style.display = 'none';
+        }
+      };
+    })();
+
+    // เปิด/ปิดเมนูมือถือ
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    }
+
+    // อัปเดตตัวเลขตะกร้าสินค้าจาก localStorage
+    function syncHomeCartBadge() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('cloudy_pillow_cart') || '[]');
+        const totalQty = Array.isArray(saved) ? saved.reduce((sum, item) => sum + (item.qty || 1), 0) : 0;
+        const badge = document.getElementById('cart-badge');
+        if (badge) badge.textContent = totalQty;
+      } catch (e) {}
+    }
+
+    // จัดการตะกร้าสินค้าผ่าน localStorage และส่งต่อผ่าน URL Query
+    function addToCart(id, name, price, image) {
+      let currentCart = [];
+      try {
+        const saved = JSON.parse(localStorage.getItem('cloudy_pillow_cart') || '[]');
+        if (Array.isArray(saved)) currentCart = saved;
+      } catch (e) {}
+
+      const existing = currentCart.find((item) => item.id === id);
+      if (existing) {
+        existing.qty = (existing.qty || 1) + 1;
+      } else {
+        currentCart.push({
+          id,
+          name,
+          price,
+          image: image || 'Pic/หมอนหนุนขาว.jpg',
+          qty: 1
+        });
+      }
+
+      try {
+        localStorage.setItem('cloudy_pillow_cart', JSON.stringify(currentCart));
+      } catch (e) {}
+
+      syncHomeCartBadge();
+
+      const allIds = [];
+      currentCart.forEach((it) => {
+        for (let i = 0; i < (it.qty || 1); i++) allIds.push(it.id);
+      });
+      const query = '?items=' + encodeURIComponent(allIds.join(','));
+      document.getElementById('nav-cart-link').href = 'cart.html' + query;
+      document.getElementById('toast-cart-link').href = 'cart.html' + query;
+
+      const toast = document.getElementById('toast-box');
+      document.getElementById('toast-text').textContent = `เพิ่ม "${name}" ลงตะกร้าแล้ว`;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3500);
+    }
+
+    window.addEventListener('DOMContentLoaded', syncHomeCartBadge);
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
