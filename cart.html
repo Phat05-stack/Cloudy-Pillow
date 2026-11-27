@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ตะกร้าสินค้าและโค้ดส่วนลด | Cloudy Pillow</title>
+
+  <!-- โหลด Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- โหลดฟอนต์ Prompt และ Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Prompt', 'Inter', sans-serif;
+      background: linear-gradient(135deg, #FDF8FA 0%, #FAF5FF 48%, #FDECE6 100%);
+      color: #2D2438;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen overflow-x-hidden">
+
+  <!-- แถบประกาศด้านบนสุด -->
+  <div class="w-full bg-gradient-to-r from-[#8B5CF6] via-[#9333EA] to-[#A855F7] text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium shadow-xs">
+    ✨ พิเศษ! ใช้โค้ด <b>CLOUDY50</b> ลดทันที 50 บาท | โค้ด <b>PILLOW10</b> ลด 10% | โค้ด <b>FREESHIP</b> ส่งฟรีทุกออเดอร์ 💕
+  </div>
+
+  <!-- แถบเมนูนำทางหลัก -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-purple-100/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3 group shrink-0">
+          <img
+            src="Pic/LOGO.jpg"
+            alt="โลโก้ร้าน Cloudy Pillow"
+            onerror="this.src='https://placehold.co/80x80/F3E8FF/7E22CE?text=CP';"
+            class="w-16 h-16 rounded-full object-cover border-2 border-pink-200/80 shadow-sm bg-white"
+          />
+          <div>
+            <div class="text-xl font-bold tracking-tight leading-none">
+              <span class="text-[#2D2438]">Cloudy</span><span class="text-[#F48FB1]">Pillow</span>
+            </div>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 tracking-wider uppercase mt-1">
+              SOFT PILLOWS 💕 BETTER DAYS
+            </p>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a href="index.html" class="px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">🏠 หน้าหลัก</a>
+          <a href="products.html" class="px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">🛍️ สินค้าทั้งหมด</a>
+          <a href="reviews.html" class="px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">⭐ รีวิวสินค้า</a>
+          <a href="contact.html" class="px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">💬 ติดต่อร้านค้า</a>
+        </nav>
+
+        <div class="flex items-center gap-2.5">
+          <a href="cart.html" class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-[#F48FB1] to-[#F06292] text-white text-sm font-medium shadow-md shadow-pink-200/80">
+            <span>🛒</span>
+            <span>ตะกร้าสินค้า</span>
+            <span id="cart-badge" class="bg-white text-pink-600 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- เนื้อหาหลักหน้าตะกร้าสินค้า -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 bg-purple-100/70 px-3 py-1 rounded-full">
+        Shopping Cart &amp; Promo Code 🎟️
+      </span>
+      <h1 class="text-2xl sm:text-3xl font-bold text-[#2D2438] mt-2">ตะกร้าสินค้าและส่วนลดของคุณ</h1>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- ฝั่งซ้าย: รายการสินค้าในตะกร้า -->
+      <div class="lg:col-span-7 space-y-4">
+        <div id="cart-items-list" class="space-y-4"></div>
+
+        <!-- ปุ่มกลับไปเลือกซื้อเพิ่ม -->
+        <div class="pt-2">
+          <a href="products.html" class="inline-flex items-center gap-2 text-sm font-semibold text-purple-700 hover:text-pink-600 transition">
+            ← เลือกซื้อหมอนรุ่นอื่นๆ เพิ่มเติม
+          </a>
+        </div>
+      </div>
+
+      <!-- ฝั่งขวา: กล่องใส่โค้ดส่วนลดและสรุปยอดชำระเงิน -->
+      <div class="lg:col-span-5 bg-white/95 rounded-3xl p-6 border border-purple-100 shadow-sm space-y-6">
+        <!-- ส่วนกรอกโค้ดส่วนลด -->
+        <div>
+          <h2 class="text-base font-bold text-[#2D2438] flex items-center gap-2 mb-3">
+            <span>🎟️</span> กรอกโค้ดส่วนลด / โค้ดส่งฟรี
+          </h2>
+
+          <div class="flex gap-2">
+            <input
+              type="text"
+              id="promo-input"
+              placeholder="พิมพ์โค้ด เช่น CLOUDY50, FREESHIP"
+              onkeydown="if(event.key === 'Enter') applyPromoCode()"
+              class="flex-grow px-4 py-2.5 rounded-xl border border-purple-200 focus:outline-none focus:border-purple-500 text-sm uppercase bg-purple-50/30"
+            />
+            <button
+              type="button"
+              onclick="applyPromoCode()"
+              class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#8B5CF6] to-[#A855F7] hover:opacity-95 text-white text-sm font-semibold transition cursor-pointer shrink-0"
+            >
+              ใช้โค้ด
+            </button>
+          </div>
+
+          <!-- ข้อความแจ้งผลการตรวจสอบโค้ด -->
+          <div id="promo-message" class="hidden mt-2.5 text-xs font-medium px-3 py-2 rounded-xl"></div>
+
+          <!-- แถบโค้ดแนะนำที่กดคลิกเพื่อใช้งานได้ทันที -->
+          <div class="mt-4">
+            <p class="text-xs text-slate-500 mb-2">คลิกเลือกโค้ดส่วนลดที่ใช้ได้ทันที:</p>
+            <div class="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onclick="quickApplyPromo('CLOUDY50')"
+                class="px-3 py-1.5 rounded-lg border border-dashed border-purple-300 bg-purple-50/70 hover:bg-purple-100 text-purple-700 text-xs font-semibold transition cursor-pointer"
+              >
+                🏷️ CLOUDY50 (ลด ฿50)
+              </button>
+              <button
+                type="button"
+                onclick="quickApplyPromo('PILLOW10')"
+                class="px-3 py-1.5 rounded-lg border border-dashed border-pink-300 bg-pink-50/70 hover:bg-pink-100 text-pink-700 text-xs font-semibold transition cursor-pointer"
+              >
+                ✨ PILLOW10 (ลด 10% ขั้นต่ำ ฿500)
+              </button>
+              <button
+                type="button"
+                onclick="quickApplyPromo('FREESHIP')"
+                class="px-3 py-1.5 rounded-lg border border-dashed border-emerald-300 bg-emerald-50/70 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold transition cursor-pointer"
+              >
+                🚚 FREESHIP (ส่งฟรี)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-purple-100" />
+
+        <!-- สรุปรายการคำนวณยอดเงิน -->
+        <div class="space-y-3 text-sm">
+          <h3 class="text-base font-bold text-[#2D2438] mb-2">สรุปยอดสั่งซื้อ</h3>
+
+          <div class="flex justify-between text-slate-600">
+            <span>ยอดรวมค่าสินค้า (<span id="summary-qty">0</span> ชิ้น)</span>
+            <span id="summary-subtotal" class="font-semibold text-[#2D2438]">฿0</span>
+          </div>
+
+          <div class="flex justify-between text-slate-600">
+            <span>ค่าจัดส่งมาตรฐาน</span>
+            <span id="summary-shipping" class="font-semibold text-[#2D2438]">฿50</span>
+          </div>
+
+          <!-- แถวแสดงส่วนลด (จะแสดงเมื่อใช้โค้ดสำเร็จ) -->
+          <div id="discount-row" class="hidden flex justify-between items-center text-emerald-600 bg-emerald-50/80 px-3 py-2 rounded-xl border border-emerald-200/70">
+            <div class="flex items-center gap-1.5">
+              <span>🎉 ส่วนลด (<b id="applied-code-label"></b>)</span>
+              <button type="button" onclick="removePromoCode()" class="text-[11px] text-rose-500 underline ml-1 cursor-pointer">ยกเลิก</button>
+            </div>
+            <span id="summary-discount" class="font-bold">-฿0</span>
+          </div>
+
+          <div class="pt-3 border-t border-purple-100 flex justify-between items-end">
+            <span class="font-bold text-base text-[#2D2438]">ยอดชำระสุทธิ</span>
+            <div class="text-right">
+              <span id="summary-total" class="text-2xl font-extrabold text-purple-700">฿0</span>
+              <p class="text-[11px] text-slate-400">รวมภาษีมูลค่าเพิ่มแล้ว</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ปุ่มยืนยันการสั่งซื้อ -->
+        <button
+          type="button"
+          onclick="checkoutOrder()"
+          class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#F48FB1] to-[#F06292] hover:opacity-95 text-white font-bold text-sm sm:text-base shadow-lg shadow-pink-200/80 transition cursor-pointer"
+        >
+          ดำเนินการชำระเงิน ✨
+        </button>
+
+        <!-- กล่องแจ้งเตือนสถานะคำสั่งซื้อ -->
+        <div id="checkout-status" class="hidden p-4 rounded-2xl bg-purple-50 border border-purple-200 text-xs sm:text-sm text-purple-800 leading-relaxed"></div>
+      </div>
+    </div>
+
+    <!-- ส่วนแสดงรายการคำสั่งซื้อและสถานะการจัดส่ง (ซิงค์รูปแบบตาราง Google Sheets) -->
+    <section class="mt-12 bg-white/95 rounded-3xl p-6 sm:p-8 border border-purple-100 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-pink-600 bg-pink-50 px-3 py-1 rounded-full border border-pink-200/70">
+            Order &amp; Shipping Status 📦
+          </span>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#2D2438] mt-2">ติดตามสถานะการจัดส่งคำสั่งซื้อ</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+            แสดงสถานะออเดอร์พร้อมแถบสีแยกตามขั้นตอนการจัดส่ง (สามารถเปลี่ยนสถานะเพื่อดูสีและส่งออกข้อมูลลงตารางได้ทันที)
+          </p>
+        </div>
+
+        <!-- แถบสีอธิบายความหมายของทั้ง 6 สถานะ -->
+        <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold">
+          <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-300">🟡 รอดำเนินการ</span>
+          <span class="px-2.5 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-300">🔵 รอขนส่งเข้ารับ</span>
+          <span class="px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-300">🟣 กำลังดำเนินการจัดส่ง</span>
+          <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">🟢 จัดส่งสำเร็จ</span>
+          <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 border border-rose-300">🔴 จัดส่งไม่สำเร็จ</span>
+          <span class="px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 border border-orange-300">🟠 ของโดนตีกลับ</span>
+        </div>
+      </div>
+
+      <!-- ตารางแสดงรายการคำสั่งซื้อและสถานะการจัดส่ง -->
+      <div class="overflow-x-auto rounded-2xl border border-purple-100">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-gradient-to-r from-[#EC4899] to-[#F43F5E] text-white">
+              <th class="py-3 px-4 font-semibold whitespace-nowrap">เลขที่คำสั่งซื้อ</th>
+              <th class="py-3 px-4 font-semibold whitespace-nowrap">วัน-เวลาที่สั่งซื้อ</th>
+              <th class="py-3 px-4 font-semibold whitespace-nowrap">ชื่อลูกค้า</th>
+              <th class="py-3 px-4 font-semibold">รายการสินค้าที่สั่ง</th>
+              <th class="py-3 px-4 font-semibold text-right whitespace-nowrap">ยอดชำระสุทธิ</th>
+              <th class="py-3 px-4 font-semibold whitespace-nowrap">สถานะออเดอร์</th>
+              <th class="py-3 px-4 font-semibold whitespace-nowrap">เปลี่ยนสถานะ (แอดมิน)</th>
+            </tr>
+          </thead>
+          <tbody id="order-status-tbody" class="divide-y divide-purple-100 bg-white"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white/90 border-t border-purple-100 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-xs text-slate-400">
+      © 2026 Cloudy Pillow Thailand • Soft Pillows 💕 Better Days
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 1. ฐานข้อมูลสินค้าครบทั้ง 36 รายการ (ซิงค์รูปทรง สี และลวดลายตรงกับ products.html)
+    // =========================================================================
+    const PRODUCT_CATALOG = {
+      'ergo': { id: 'ergo', name: 'Cloudy Ergo Neck Pillow', price: 890, image: 'Pic/หมอนรองคอขาว.jpg', shape: 'neck', pattern: 'woven', baseColor: '#F7F7F8', pipingColor: '#E2E4E9' },
+      'fluffy': { id: 'fluffy', name: 'Fluffy Cloud Down Pillow', price: 750, image: 'Pic/หมอนหนุนขาว.jpg', shape: 'pillow', pattern: 'woven', baseColor: '#F7F7F8', pipingColor: '#E4E4E7' },
+      'latex': { id: 'latex', name: 'Pure Latex Pastel Pillow', price: 990, image: 'Pic/หมอนหนุนสีเขียว.jpg', shape: 'pillow', pattern: 'sage-leaves', baseColor: '#8B9F87', pipingColor: '#697D65' },
+
+      // หมอนอิง (6 แบบ)
+      'cushion-1': { id: 'cushion-1', name: 'หมอนอิง Cream Piped Square', price: 259, image: 'Pic/S__42606615.jpg', fallbacks: ['Pic/cushion-1.jpg', 'Pic/S__42606615_0.jpg'], shape: 'square', pattern: 'woven', baseColor: '#EFE9DD', pipingColor: '#DFD6C5' },
+      'cushion-2': { id: 'cushion-2', name: 'หมอนอิง Sakura Piped Square', price: 259, image: 'Pic/S__42606616.jpg', fallbacks: ['Pic/cushion-2.jpg', 'Pic/S__42606616_0.jpg'], shape: 'square', pattern: 'woven', baseColor: '#F3C3CC', pipingColor: '#E1A6B2' },
+      'cushion-3': { id: 'cushion-3', name: 'หมอนอิง Plum Velvet Round', price: 299, image: 'Pic/S__42606617.jpg', fallbacks: ['Pic/cushion-3.jpg'], shape: 'round', pattern: 'woven', baseColor: '#88598A', pipingColor: '#6D436F' },
+      'cushion-4': { id: 'cushion-4', name: 'หมอนอิง Pastel Velvet Heart', price: 299, image: 'Pic/S__42606618.jpg', fallbacks: ['Pic/cushion-4.jpg'], shape: 'heart', pattern: 'velvet', baseColor: '#EFC0C9', pipingColor: '#D89FA9' },
+      'cushion-5': { id: 'cushion-5', name: 'หมอนอิง Vintage Rose Bouquet', price: 319, image: 'Pic/S__42606620.jpg', fallbacks: ['Pic/cushion-5.jpg'], shape: 'square', pattern: 'vintage-bouquet', baseColor: '#F5F2EA', pipingColor: '#91A38E' },
+      'cushion-6': { id: 'cushion-6', name: 'หมอนอิง Pastel Ribbon Bows', price: 319, image: 'Pic/S__42606621.jpg', fallbacks: ['Pic/cushion-6.jpg'], shape: 'square', pattern: 'pastel-bows', baseColor: '#F5F3EC', pipingColor: '#91A38E' },
+
+      // หมอนหนุน (6 แบบ)
+      'pillow-1': { id: 'pillow-1', name: 'หมอนหนุน Pure White Hotel', price: 359, image: 'Pic/หมอนหนุนขาว.jpg', fallbacks: ['Pic/S__42606598_0.jpg'], shape: 'pillow', pattern: 'woven', baseColor: '#F7F7F8', pipingColor: '#E4E4E7' },
+      'pillow-2': { id: 'pillow-2', name: 'หมอนหนุน Lilac Lavender Soft', price: 389, image: 'Pic/หมอนหนุนม่วง.jpg', fallbacks: ['Pic/S__42606600_0.jpg'], shape: 'pillow', pattern: 'woven', baseColor: '#B89BD4', pipingColor: '#9D7EB9' },
+      'pillow-3': { id: 'pillow-3', name: 'หมอนหนุน Pastel Ditsy Floral', price: 389, image: 'Pic/หมอนหนุนลายดอก.jpg', fallbacks: ['Pic/S__42606601_0.jpg'], shape: 'pillow', pattern: 'ditsy-floral', baseColor: '#F6F4EF', pipingColor: '#E2D8D5' },
+      'pillow-4': { id: 'pillow-4', name: 'หมอนหนุน Nordic Blue Gingham', price: 359, image: 'Pic/หมอนหนุนลายตาราง.jpg', fallbacks: ['Pic/S__42606602_0.jpg'], shape: 'pillow', pattern: 'gingham', baseColor: '#F2F2EF', pipingColor: '#B8C1CC' },
+      'pillow-5': { id: 'pillow-5', name: 'หมอนหนุน Cream Cloudy Sky', price: 389, image: 'Pic/หมอนหนุนสีเหลือง.jpg', fallbacks: ['Pic/S__42606599_0.jpg'], shape: 'pillow', pattern: 'soft-clouds', baseColor: '#EFE6D2', pipingColor: '#DFD4BC' },
+      'pillow-6': { id: 'pillow-6', name: 'หมอนหนุน Sage Botanical Leaf', price: 389, image: 'Pic/หมอนหนุนสีเขียว.jpg', fallbacks: ['Pic/หมอนหนุนเขียว.jpg', 'Pic/S__42606608.jpg'], shape: 'pillow', pattern: 'sage-leaves', baseColor: '#8B9F87', pipingColor: '#697D65' },
+
+      // หมอนรองคอ (6 แบบ)
+      'neck-1': { id: 'neck-1', name: 'หมอนรองคอ Pure White Cloud', price: 199, image: 'Pic/หมอนรองคอขาว.jpg', shape: 'neck', pattern: 'woven', baseColor: '#F7F7F8', pipingColor: '#E2E4E9' },
+      'neck-2': { id: 'neck-2', name: 'หมอนรองคอ Sakura Velvet Neck', price: 199, image: 'Pic/รองคอชมพู.jpg', shape: 'neck', pattern: 'velvet', baseColor: '#E69DA8', pipingColor: '#CE7E8A' },
+      'neck-3': { id: 'neck-3', name: 'หมอนรองคอ Sky Starry Neck', price: 229, image: 'Pic/รองคอฟ้า.jpg', shape: 'neck', pattern: 'woven', baseColor: '#B8D0E8', pipingColor: '#96B5D4' },
+      'neck-4': { id: 'neck-4', name: 'หมอนรองคอ Lavender Dream Neck', price: 199, image: 'Pic/รองคอม่วง.jpg', shape: 'neck', pattern: 'woven', baseColor: '#C4AEDB', pipingColor: '#A68CC2' },
+      'neck-5': { id: 'neck-5', name: 'หมอนรองคอ Cream Cloudy Neck', price: 229, image: 'Pic/รองคอเหลือง.jpg', shape: 'neck', pattern: 'soft-clouds', baseColor: '#F3EBD8', pipingColor: '#DFD4BC' },
+      'neck-6': { id: 'neck-6', name: 'หมอนรองคอ Sage Botanical Neck', price: 229, image: 'Pic/รองคอเขียว.jpg', fallbacks: ['Pic/หมอนรองคอเขียว.jpg'], shape: 'neck', pattern: 'sage-leaves', baseColor: '#8B9F87', pipingColor: '#687B64' },
+
+      // หมอนผ้าห่ม (6 แบบ)
+      'blanket-1': { id: 'blanket-1', name: 'หมอนผ้าห่ม Cream Fluffy Cloud', price: 459, image: 'Pic/S__42606622_2.jpg', fallbacks: ['Pic/S__42606622.jpg'], shape: 'blanket', pattern: 'blanket-cloud-3d', baseColor: '#EFE9DD', pipingColor: '#DFD6C5' },
+      'blanket-2': { id: 'blanket-2', name: 'หมอนผ้าห่ม Rose Sweet Heart', price: 459, image: 'Pic/S__42606623_2.jpg', fallbacks: ['Pic/S__42606623.jpg'], shape: 'blanket', pattern: 'blanket-hearts', baseColor: '#E5B4BE', pipingColor: '#C9909C' },
+      'blanket-3': { id: 'blanket-3', name: 'หมอนผ้าห่ม Midnight Starry Galaxy', price: 499, image: 'Pic/S__42606624_2.jpg', fallbacks: ['Pic/S__42606624.jpg'], shape: 'blanket', pattern: 'blanket-galaxy', baseColor: '#43276E', pipingColor: '#2E1852' },
+      'blanket-4': { id: 'blanket-4', name: 'หมอนผ้าห่ม Sky Smiling Cloud', price: 459, image: 'Pic/S__42606625_2.jpg', fallbacks: ['Pic/S__42606625.jpg'], shape: 'blanket', pattern: 'blanket-sky-cloud', baseColor: '#8FB7DC', pipingColor: '#6F9AC2' },
+      'blanket-5': { id: 'blanket-5', name: 'หมอนผ้าห่ม Ivory Cute Bunny', price: 459, image: 'Pic/หมอนผ้าห่มขาว.jpg', fallbacks: ['Pic/S__42606626.jpg'], shape: 'blanket', pattern: 'blanket-bunny', baseColor: '#F5F4F0', pipingColor: '#E2E0D8' },
+      'blanket-6': { id: 'blanket-6', name: 'หมอนผ้าห่ม Pastel Meadow Floral', price: 499, image: 'Pic/S__42606627_2.jpg', fallbacks: ['Pic/S__42606627.jpg'], shape: 'blanket', pattern: 'blanket-meadow', baseColor: '#F6F5F0', pipingColor: '#E2E0D8' },
+
+      // หมอนตุ๊กตา (6 แบบ)
+      'plush-1': { id: 'plush-1', name: 'หมอนตุ๊กตา Fluffy White Cloud', price: 269, image: 'Pic/S__42606628.jpg', fallbacks: ['Pic/S__42606628_2.jpg'], shape: 'plush-cloud', pattern: 'fluffy', baseColor: '#F8F8FA', pipingColor: '#E2E4E9' },
+      'plush-2': { id: 'plush-2', name: 'หมอนตุ๊กตา Chubby Pink Bunny', price: 329, image: 'Pic/S__42606629_2.jpg', fallbacks: ['Pic/S__42606629.jpg'], shape: 'plush-bunny', pattern: 'fluffy', baseColor: '#E8BFC3', pipingColor: '#CFA2A7' },
+      'plush-3': { id: 'plush-3', name: 'หมอนตุ๊กตา Cozy Cream Bear', price: 329, image: 'Pic/S__42606631_2.jpg', fallbacks: ['Pic/S__42606631.jpg'], shape: 'plush-bear', pattern: 'fluffy', baseColor: '#DFCBB3', pipingColor: '#C4AD93' },
+      'plush-4': { id: 'plush-4', name: 'หมอนตุ๊กตา Lavender Kitty Cat', price: 329, image: 'Pic/S__42606632_2.jpg', fallbacks: ['Pic/S__42606632.jpg'], shape: 'plush-cat', pattern: 'fluffy', baseColor: '#AC8ED1', pipingColor: '#9171B8' },
+      'plush-5': { id: 'plush-5', name: 'หมอนตุ๊กตา Pastel Yellow Star', price: 289, image: 'Pic/S__42606633_2.jpg', fallbacks: ['Pic/S__42606633.jpg'], shape: 'plush-star', pattern: 'fluffy', baseColor: '#F3E09B', pipingColor: '#DEC778' },
+      'plush-6': { id: 'plush-6', name: 'หมอนตุ๊กตา Creamy Crescent Moon', price: 289, image: 'Pic/S__42606634_2.jpg', fallbacks: ['Pic/S__42606634.jpg'], shape: 'plush-moon', pattern: 'fluffy', baseColor: '#EFE4D0', pipingColor: '#D8CAB2' },
+
+      // หมอนข้าง (6 แบบ)
+      'bolster-1': { id: 'bolster-1', name: 'หมอนข้าง Pure White Hotel', price: 349, image: 'Pic/ข้างขาว.jpg', fallbacks: ['Pic/S__42606609.jpg'], shape: 'bolster', pattern: 'woven', baseColor: '#F7F7F8', pipingColor: '#E2E4E9' },
+      'bolster-2': { id: 'bolster-2', name: 'หมอนข้าง Vintage Floral Garden', price: 369, image: 'Pic/S__42606610.jpg', fallbacks: ['Pic/ข้างดอก.jpg'], shape: 'bolster', pattern: 'ditsy-floral', baseColor: '#F4EFE4', pipingColor: '#DDD5C4' },
+      'bolster-3': { id: 'bolster-3', name: 'หมอนข้าง Dusty Rose Velvet', price: 399, image: 'Pic/S__42606611.jpg', fallbacks: ['Pic/ข้างแดง.jpg'], shape: 'bolster', pattern: 'velvet', baseColor: '#D68590', pipingColor: '#BD6B76' },
+      'bolster-4': { id: 'bolster-4', name: 'หมอนข้าง Sky Cloudy Bolster', price: 369, image: 'Pic/S__42606613.jpg', fallbacks: ['Pic/ข้างฟ้า.jpg'], shape: 'bolster', pattern: 'soft-clouds', baseColor: '#9AC0E6', pipingColor: '#7EA6CE' },
+      'bolster-5': { id: 'bolster-5', name: 'หมอนข้าง Royal Purple Starry', price: 399, image: 'Pic/S__42606612.jpg', fallbacks: ['Pic/ข้างม่วง.jpg'], shape: 'bolster', pattern: 'starry-gold', baseColor: '#6C4B86', pipingColor: '#53356B' },
+      'bolster-6': { id: 'bolster-6', name: 'หมอนข้าง Pastel Rainbow Hearts', price: 399, image: 'Pic/S__42606614.jpg', fallbacks: ['Pic/ข้างรุ้ง.jpg'], shape: 'bolster', pattern: 'rainbow-hearts', baseColor: '#D8C7E8', pipingColor: '#BFA9D4' }
+    };
+
+    // =========================================================================
+    // 2. ตั้งค่าค่าจัดส่งและโค้ดส่วนลดที่ใช้ได้จริง
+    // =========================================================================
+    const BASE_SHIPPING_FEE = 50;
+    const PROMO_CODES = {
+      CLOUDY50: {
+        code: 'CLOUDY50',
+        type: 'fixed',
+        value: 50,
+        minSpend: 0,
+        description: 'ลดทันที ฿50 ทุกออเดอร์'
+      },
+      PILLOW10: {
+        code: 'PILLOW10',
+        type: 'percent',
+        value: 10,
+        minSpend: 500,
+        maxDiscount: 200,
+        description: 'ลด 10% (สูงสุด ฿200) เมื่อซื้อครบ ฿500'
+      },
+      FREESHIP: {
+        code: 'FREESHIP',
+        type: 'shipping',
+        value: 50,
+        minSpend: 0,
+        description: 'ส่งฟรี! ฟรีค่าจัดส่งมาตรฐาน ฿50'
+      }
+    };
+
+    let cart = [];
+    let activePromo = null;
+
+    function adjustHexColor(hex, amount) {
+      const clean = (hex || '#F5F5F5').replace('#', '');
+      const full = clean.length === 3 ? clean.split('').map(c => c + c).join('') : clean;
+      const num = parseInt(full, 16);
+      const r = Math.min(255, Math.max(0, ((num >> 16) & 255) + amount));
+      const g = Math.min(255, Math.max(0, ((num >> 8) & 255) + amount));
+      const b = Math.min(255, Math.max(0, (num & 255) + amount));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function traceNormalPillowPath(ctx, shape, w, h) {
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+      ctx.beginPath();
+
+      if (shape === 'neck') {
+        ctx.moveTo(418, 108);
+        ctx.bezierCurveTo(585, 108, 725, 175, 736, 268);
+        ctx.bezierCurveTo(744, 345, 652, 424, 520, 424);
+        ctx.bezierCurveTo(426, 424, 376, 384, 384, 336);
+        ctx.bezierCurveTo(392, 294, 466, 262, 514, 240);
+        ctx.bezierCurveTo(465, 222, 376, 226, 334, 268);
+        ctx.bezierCurveTo(304, 298, 282, 358, 206, 358);
+        ctx.bezierCurveTo(132, 358, 96, 314, 106, 256);
+        ctx.bezierCurveTo(122, 164, 256, 108, 418, 108);
+        ctx.closePath();
+      } else if (shape === 'square') {
+        const hw = 158;
+        const hh = 152;
+        ctx.moveTo(cx - hw + 18, cy - hh);
+        ctx.quadraticCurveTo(cx, cy - hh + 24, cx + hw - 18, cy - hh);
+        ctx.quadraticCurveTo(cx + hw + 8, cy - hh, cx + hw + 2, cy - hh + 24);
+        ctx.quadraticCurveTo(cx + hw - 14, cy, cx + hw + 6, cy + hh - 20);
+        ctx.quadraticCurveTo(cx + hw + 10, cy + hh, cx + hw - 22, cy + hh);
+        ctx.quadraticCurveTo(cx, cy + hh - 6, cx - hw + 22, cy + hh);
+        ctx.quadraticCurveTo(cx - hw - 10, cy + hh, cx - hw - 6, cy + hh - 20);
+        ctx.quadraticCurveTo(cx - hw + 14, cy, cx - hw - 2, cy - hh + 24);
+        ctx.quadraticCurveTo(cx - hw - 8, cy - hh, cx - hw + 18, cy - hh);
+        ctx.closePath();
+      } else if (shape === 'blanket') {
+        ctx.moveTo(148, 224);
+        ctx.bezierCurveTo(215, 145, 345, 118, 435, 128);
+        ctx.bezierCurveTo(515, 148, 575, 185, 610, 218);
+        ctx.bezierCurveTo(585, 255, 515, 305, 395, 336);
+        ctx.bezierCurveTo(295, 355, 215, 315, 148, 224);
+        ctx.closePath();
+      } else if (shape === 'round') {
+        ctx.arc(cx, cy, 152, 0, Math.PI * 2);
+      } else if (shape === 'heart') {
+        ctx.moveTo(cx, cy + 145);
+        ctx.bezierCurveTo(cx - 195, cy + 25, cx - 185, cy - 135, cx - 75, cy - 135);
+        ctx.bezierCurveTo(cx - 25, cy - 135, cx, cy - 95, cx, cy - 75);
+        ctx.bezierCurveTo(cx, cy - 95, cx + 25, cy - 135, cx + 75, cy - 135);
+        ctx.bezierCurveTo(cx + 185, cy - 135, cx + 195, cy + 25, cx, cy + 145);
+        ctx.closePath();
+      } else if (shape === 'plush-cloud') {
+        ctx.moveTo(260, 355);
+        ctx.bezierCurveTo(185, 355, 165, 275, 225, 240);
+        ctx.bezierCurveTo(220, 175, 295, 150, 340, 185);
+        ctx.bezierCurveTo(375, 120, 465, 120, 500, 185);
+        ctx.bezierCurveTo(545, 150, 620, 175, 615, 240);
+        ctx.bezierCurveTo(675, 275, 655, 355, 580, 355);
+        ctx.closePath();
+      } else if (shape === 'plush-bunny') {
+        ctx.moveTo(420, 118);
+        ctx.bezierCurveTo(465, 118, 525, 168, 535, 265);
+        ctx.bezierCurveTo(542, 338, 495, 392, 420, 392);
+        ctx.bezierCurveTo(345, 392, 298, 338, 305, 265);
+        ctx.bezierCurveTo(315, 168, 375, 118, 420, 118);
+        ctx.closePath();
+      } else if (shape === 'plush-bear') {
+        ctx.ellipse(420, 268, 122, 126, 0, 0, Math.PI * 2);
+      } else if (shape === 'plush-cat') {
+        ctx.moveTo(325, 170);
+        ctx.lineTo(342, 108);
+        ctx.lineTo(388, 145);
+        ctx.quadraticCurveTo(420, 140, 452, 145);
+        ctx.lineTo(498, 108);
+        ctx.lineTo(515, 170);
+        ctx.bezierCurveTo(535, 205, 525, 245, 492, 262);
+        ctx.bezierCurveTo(515, 295, 515, 355, 495, 388);
+        ctx.lineTo(345, 388);
+        ctx.bezierCurveTo(325, 355, 325, 295, 348, 262);
+        ctx.bezierCurveTo(315, 245, 305, 205, 325, 170);
+        ctx.closePath();
+      } else if (shape === 'plush-star') {
+        const outerR = 165;
+        const innerR = 82;
+        const pts = 5;
+        for (let i = 0; i < pts * 2; i++) {
+          const r = i % 2 === 0 ? outerR : innerR;
+          const angle = (i * Math.PI) / pts - Math.PI / 2;
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + 12 + Math.sin(angle) * r;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+      } else if (shape === 'plush-moon') {
+        ctx.moveTo(485, 118);
+        ctx.bezierCurveTo(345, 105, 268, 215, 298, 318);
+        ctx.bezierCurveTo(324, 405, 435, 425, 528, 362);
+        ctx.bezierCurveTo(542, 352, 535, 336, 518, 340);
+        ctx.bezierCurveTo(445, 356, 385, 315, 385, 250);
+        ctx.bezierCurveTo(385, 185, 442, 148, 502, 154);
+        ctx.bezierCurveTo(518, 155, 512, 122, 485, 118);
+        ctx.closePath();
+      } else if (shape === 'bolster') {
+        ctx.roundRect(cx - 285, cy - 88, 570, 176, 82);
+      } else {
+        const hw = 278;
+        const hh = 132;
+        ctx.moveTo(cx - hw + 52, cy - hh);
+        ctx.quadraticCurveTo(cx, cy - hh - 14, cx + hw - 52, cy - hh);
+        ctx.quadraticCurveTo(cx + hw + 12, cy - hh, cx + hw + 8, cy - hh + 48);
+        ctx.quadraticCurveTo(cx + hw + 22, cy + 8, cx + hw + 14, cy + hh - 34);
+        ctx.quadraticCurveTo(cx + hw + 10, cy + hh, cx + hw - 56, cy + hh);
+        ctx.quadraticCurveTo(cx, cy + hh + 12, cx - hw + 56, cy + hh);
+        ctx.quadraticCurveTo(cx - hw - 10, cy + hh, cx - hw - 14, cy + hh - 34);
+        ctx.quadraticCurveTo(cx - hw - 22, cy + 8, cx - hw - 8, cy - hh + 48);
+        ctx.quadraticCurveTo(cx - hw - 12, cy - hh, cx - hw + 52, cy - hh);
+        ctx.closePath();
+      }
+    }
+
+    function drawNormalFabricPattern(ctx, item, w, h) {
+      const pat = item.pattern || 'woven';
+      ctx.save();
+
+      if (pat === 'rainbow-hearts') {
+        const rbGrad = ctx.createLinearGradient(135, 0, w - 135, 0);
+        rbGrad.addColorStop(0, '#B5D8CF');
+        rbGrad.addColorStop(0.48, '#C8B9DF');
+        rbGrad.addColorStop(1, '#DDA4B3');
+        ctx.fillStyle = rbGrad;
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.88)';
+        for (let row = 0; row < 8; row++) {
+          const y = 165 + row * 26;
+          const offsetX = (row % 2) * 14;
+          for (let col = 0; col < 22; col++) {
+            const x = 140 + col * 28 + offsetX;
+            ctx.beginPath();
+            ctx.moveTo(x, y + 4);
+            ctx.bezierCurveTo(x - 6, y - 1, x - 5, y - 7, x, y - 3);
+            ctx.bezierCurveTo(x + 5, y - 7, x + 6, y - 1, x, y + 4);
+            ctx.fill();
+          }
+        }
+      } else if (pat === 'starry-gold') {
+        for (let row = 0; row < 8; row++) {
+          const y = 165 + row * 26;
+          const offsetX = (row % 2) * 14;
+          for (let col = 0; col < 22; col++) {
+            const x = 140 + col * 28 + offsetX;
+            ctx.fillStyle = (row + col) % 3 === 0 ? '#D4D8E2' : '#E2C378';
+            ctx.beginPath();
+            for (let i = 0; i < 10; i++) {
+              const r = i % 2 === 0 ? 4.2 : 1.9;
+              const a = (i * Math.PI) / 5 - Math.PI / 2;
+              if (i === 0) ctx.moveTo(x + Math.cos(a) * r, y + Math.sin(a) * r);
+              else ctx.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r);
+            }
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+      } else if (pat === 'soft-clouds') {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+        for (let row = 0; row < 8; row++) {
+          const y = 165 + row * 25;
+          const offsetX = (row % 2) * 18;
+          for (let col = 0; col < 18; col++) {
+            const x = 135 + col * 36 + offsetX;
+            ctx.beginPath();
+            ctx.arc(x - 5, y + 2, 4.2, 0, Math.PI * 2);
+            ctx.arc(x, y - 1, 5.5, 0, Math.PI * 2);
+            ctx.arc(x + 5, y + 2, 4.2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      } else if (pat === 'ditsy-floral') {
+        const pCanvas = document.createElement('canvas');
+        pCanvas.width = 96;
+        pCanvas.height = 96;
+        const pCtx = pCanvas.getContext('2d');
+
+        const drawMiniFlower = (fx, fy, petalColor) => {
+          pCtx.strokeStyle = '#7E917B';
+          pCtx.lineWidth = 1.2;
+          pCtx.beginPath();
+          pCtx.moveTo(fx, fy + 16);
+          pCtx.quadraticCurveTo(fx - 2, fy + 8, fx, fy);
+          pCtx.moveTo(fx, fy + 10);
+          pCtx.lineTo(fx - 5, fy + 6);
+          pCtx.moveTo(fx, fy + 7);
+          pCtx.lineTo(fx + 5, fy + 3);
+          pCtx.stroke();
+
+          pCtx.fillStyle = petalColor;
+          for (let a = 0; a < 5; a++) {
+            const ang = (a * Math.PI * 2) / 5;
+            pCtx.beginPath();
+            pCtx.arc(fx + Math.cos(ang) * 3.5, fy + Math.sin(ang) * 3.5, 2.3, 0, Math.PI * 2);
+            pCtx.fill();
+          }
+          pCtx.fillStyle = '#E5C675';
+          pCtx.beginPath();
+          pCtx.arc(fx, fy, 1.4, 0, Math.PI * 2);
+          pCtx.fill();
+        };
+
+        drawMiniFlower(24, 24, '#DFA6AE');
+        drawMiniFlower(72, 28, '#9FBBD8');
+        drawMiniFlower(46, 56, '#E4B5BC');
+        drawMiniFlower(20, 74, '#9FBBD8');
+        drawMiniFlower(76, 76, '#DFA6AE');
+
+        const pattern = ctx.createPattern(pCanvas, 'repeat');
+        if (pattern) {
+          ctx.fillStyle = pattern;
+          ctx.fillRect(0, 0, w, h);
+        }
+      } else if (pat === 'vintage-bouquet') {
+        const cx = w * 0.5;
+        const cy = h * 0.5 + 8;
+        ctx.strokeStyle = '#899E86';
+        ctx.lineWidth = 1.8;
+        [[-55, -45], [55, -40], [-65, 35], [60, 40], [0, -68]].forEach(([dx, dy]) => {
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.quadraticCurveTo(cx + dx * 0.5, cy + dy * 0.8, cx + dx, cy + dy);
+          ctx.stroke();
+        });
+        const roses = [
+          [cx - 34, cy - 8, 22, '#D8A3A8'],
+          [cx + 6, cy + 16, 24, '#D5C7AE'],
+          [cx + 42, cy + 28, 21, '#D5989C'],
+          [cx - 8, cy - 42, 16, '#E8DFCF']
+        ];
+        roses.forEach(([rx, ry, r, col]) => {
+          ctx.fillStyle = col;
+          ctx.beginPath();
+          ctx.arc(rx, ry, r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(110, 82, 85, 0.35)';
+          ctx.lineWidth = 1.3;
+          ctx.beginPath();
+          ctx.arc(rx, ry, r * 0.55, 0, Math.PI * 1.6);
+          ctx.stroke();
+        });
+      } else if (pat === 'pastel-bows') {
+        const bowColors = ['#DFA8B2', '#B7D4BE', '#C6B6E0', '#E8D296'];
+        let idx = 0;
+        for (let row = 0; row < 6; row++) {
+          for (let col = 0; col < 6; col++) {
+            const bx = 290 + col * 52 + (row % 2) * 14;
+            const by = 135 + row * 48;
+            ctx.fillStyle = bowColors[idx % bowColors.length];
+            idx++;
+            ctx.beginPath();
+            ctx.moveTo(bx, by);
+            ctx.lineTo(bx - 13, by - 7);
+            ctx.lineTo(bx - 13, by + 7);
+            ctx.closePath();
+            ctx.moveTo(bx, by);
+            ctx.lineTo(bx + 13, by - 7);
+            ctx.lineTo(bx + 13, by + 7);
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+      } else if (pat === 'gingham') {
+        ctx.fillStyle = 'rgba(138, 155, 174, 0.24)';
+        for (let x = 120; x < w - 120; x += 28) {
+          ctx.fillRect(x, 110, 14, 300);
+        }
+        for (let y = 110; y < h - 110; y += 28) {
+          ctx.fillRect(120, y, 600, 14);
+        }
+      } else if (pat === 'sage-leaves') {
+        const sprigDark = '#3D4E3B';
+        const dotCream = '#F4EFE0';
+        const dotYellow = '#E5D59E';
+
+        const pCanvas = document.createElement('canvas');
+        pCanvas.width = 160;
+        pCanvas.height = 160;
+        const pCtx = pCanvas.getContext('2d');
+
+        const drawSprig = (x, y, rot, scale) => {
+          pCtx.save();
+          pCtx.translate(x, y);
+          pCtx.rotate(rot);
+          pCtx.scale(scale, scale);
+          pCtx.strokeStyle = sprigDark;
+          pCtx.lineWidth = 1.25;
+          pCtx.lineCap = 'round';
+
+          pCtx.beginPath();
+          pCtx.moveTo(-14, 2);
+          pCtx.quadraticCurveTo(0, -1, 14, 1);
+          pCtx.stroke();
+
+          const leafPairs = [-9, -3, 3, 9];
+          leafPairs.forEach((lx) => {
+            pCtx.beginPath();
+            pCtx.ellipse(lx + 2, -4.5, 4.2, 1.8, -0.55, 0, Math.PI * 2);
+            pCtx.stroke();
+
+            pCtx.beginPath();
+            pCtx.ellipse(lx + 2, 4.5, 4.2, 1.8, 0.55, 0, Math.PI * 2);
+            pCtx.stroke();
+          });
+          pCtx.beginPath();
+          pCtx.ellipse(16, 1, 4.2, 1.7, 0.05, 0, Math.PI * 2);
+          pCtx.stroke();
+          pCtx.restore();
+        };
+
+        drawSprig(34, 30, -0.45, 0.95);
+        drawSprig(116, 42, 0.65, 0.9);
+        drawSprig(76, 92, -0.15, 1.0);
+        drawSprig(28, 128, 0.52, 0.88);
+        drawSprig(128, 126, -0.72, 0.92);
+
+        const drawDotCluster = (x, y, color) => {
+          pCtx.fillStyle = color;
+          pCtx.beginPath();
+          pCtx.arc(x, y, 2.0, 0, Math.PI * 2);
+          pCtx.arc(x + 5, y + 2, 1.7, 0, Math.PI * 2);
+          pCtx.arc(x + 2, y + 5.5, 1.6, 0, Math.PI * 2);
+          pCtx.fill();
+        };
+
+        drawDotCluster(74, 26, dotCream);
+        drawDotCluster(142, 78, dotYellow);
+        drawDotCluster(22, 78, dotCream);
+        drawDotCluster(84, 138, dotCream);
+        drawDotCluster(112, 86, dotYellow);
+
+        const pattern = ctx.createPattern(pCanvas, 'repeat');
+        if (pattern) {
+          ctx.fillStyle = pattern;
+          ctx.fillRect(0, 0, w, h);
+        }
+      }
+      ctx.restore();
+    }
+
+    function drawPlushCharacterDetails(ctx, shape, baseColor, pipingColor, w, h) {
+      ctx.save();
+      const darkStroke = '#262228';
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      const drawCuteFace = (fx, fy, eyeGap, eyeR, mouthW, noseColor) => {
+        ctx.fillStyle = darkStroke;
+        ctx.beginPath();
+        ctx.arc(fx - eyeGap, fy, eyeR, 0, Math.PI * 2);
+        ctx.arc(fx + eyeGap, fy, eyeR, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(fx - eyeGap - eyeR * 0.3, fy - eyeR * 0.3, eyeR * 0.32, 0, Math.PI * 2);
+        ctx.arc(fx + eyeGap - eyeR * 0.3, fy - eyeR * 0.3, eyeR * 0.32, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (noseColor) {
+          ctx.fillStyle = noseColor;
+          ctx.beginPath();
+          ctx.ellipse(fx, fy + 10, 7, 4.5, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.strokeStyle = darkStroke;
+        ctx.lineWidth = 2.6;
+        ctx.beginPath();
+        if (noseColor) {
+          ctx.moveTo(fx, fy + 14);
+          ctx.lineTo(fx, fy + 21);
+          ctx.moveTo(fx - mouthW, fy + 19);
+          ctx.quadraticCurveTo(fx - mouthW * 0.5, fy + 27, fx, fy + 21);
+          ctx.quadraticCurveTo(fx + mouthW * 0.5, fy + 27, fx + mouthW, fy + 19);
+        } else {
+          ctx.moveTo(fx - mouthW, fy + 10);
+          ctx.quadraticCurveTo(fx, fy + 22, fx + mouthW, fy + 10);
+        }
+        ctx.stroke();
+      };
+
+      if (shape === 'plush-cloud') {
+        drawCuteFace(w * 0.5, 255, 32, 6.5, 16, null);
+      } else if (shape === 'plush-bunny') {
+        ctx.fillStyle = baseColor;
+        ctx.strokeStyle = pipingColor;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.moveTo(378, 128);
+        ctx.bezierCurveTo(325, 102, 285, 185, 296, 252);
+        ctx.bezierCurveTo(306, 268, 336, 242, 354, 182);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#F3D2D6';
+        ctx.beginPath();
+        ctx.ellipse(322, 198, 12, 34, 0.32, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = baseColor;
+        ctx.beginPath();
+        ctx.moveTo(462, 128);
+        ctx.bezierCurveTo(515, 102, 555, 185, 544, 252);
+        ctx.bezierCurveTo(534, 268, 504, 242, 486, 182);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#F3D2D6';
+        ctx.beginPath();
+        ctx.ellipse(518, 198, 12, 34, -0.32, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = baseColor;
+        ctx.beginPath();
+        ctx.ellipse(298, 282, 16, 28, 0.35, 0, Math.PI * 2);
+        ctx.ellipse(542, 282, 16, 28, -0.35, 0, Math.PI * 2);
+        ctx.ellipse(374, 388, 24, 12, 0, 0, Math.PI * 2);
+        ctx.ellipse(466, 388, 24, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        drawCuteFace(420, 238, 36, 7, 17, '#D48292');
+      } else if (shape === 'plush-bear') {
+        ctx.fillStyle = baseColor;
+        ctx.strokeStyle = pipingColor;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.arc(335, 162, 32, 0, Math.PI * 2);
+        ctx.arc(505, 162, 32, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#F4EFE4';
+        ctx.beginPath();
+        ctx.arc(337, 164, 17, 0, Math.PI * 2);
+        ctx.arc(503, 164, 17, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#F7F4EC';
+        ctx.beginPath();
+        ctx.ellipse(420, 248, 36, 26, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = baseColor;
+        ctx.beginPath();
+        ctx.roundRect(306, 282, 112, 42, 21);
+        ctx.roundRect(422, 282, 112, 42, 21);
+        ctx.ellipse(368, 388, 26, 12, 0, 0, Math.PI * 2);
+        ctx.ellipse(472, 388, 26, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        drawCuteFace(420, 232, 42, 6.8, 16, '#A38873');
+      } else if (shape === 'plush-cat') {
+        ctx.strokeStyle = baseColor;
+        ctx.lineWidth = 24;
+        ctx.beginPath();
+        ctx.moveTo(495, 365);
+        ctx.bezierCurveTo(548, 365, 558, 315, 542, 290);
+        ctx.stroke();
+
+        ctx.fillStyle = '#C7B0E3';
+        ctx.beginPath();
+        ctx.ellipse(420, 215, 30, 21, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = darkStroke;
+        ctx.lineWidth = 2.2;
+        [-1, 1].forEach((dir) => {
+          [198, 208, 218].forEach((wy, idx) => {
+            ctx.beginPath();
+            ctx.moveTo(420 + dir * 44, wy);
+            ctx.lineTo(420 + dir * 68, wy + (idx - 1) * 4);
+            ctx.stroke();
+          });
+        });
+
+        drawCuteFace(420, 196, 36, 6.5, 14, darkStroke);
+      } else if (shape === 'plush-star') {
+        drawCuteFace(420, 255, 36, 7.2, 15, null);
+      } else if (shape === 'plush-moon') {
+        drawCuteFace(342, 258, 22, 6.2, 12, null);
+      }
+      ctx.restore();
+    }
+
+    // วาดภาพสตูดิโอ 3 มิติลงบน Canvas ของสินค้าแต่ละชิ้นในตะกร้า (เหมือนหน้าสินค้าทุกประการ)
+    function renderCartCanvasThumbnail(canvas) {
+      const itemId = canvas.dataset.id;
+      const item = PRODUCT_CATALOG[itemId] || { shape: 'square', pattern: 'woven', baseColor: '#EFE9DD', pipingColor: '#DFD6C5' };
+      const w = 840;
+      const h = 520;
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      const baseColor = item.baseColor || '#F7F7F8';
+      const pipingColor = item.pipingColor || adjustHexColor(baseColor, -24);
+      const shape = item.shape || 'pillow';
+
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
+      bgGrad.addColorStop(0, '#FAFAFA');
+      bgGrad.addColorStop(1, '#F3F3F2');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.save();
+      const shadowY = shape === 'neck' ? 408 : shape.startsWith('plush-') ? 404 : h * 0.5 + 136;
+      const shadowGrad = ctx.createRadialGradient(w * 0.5, shadowY, 15, w * 0.5, shadowY, 260);
+      shadowGrad.addColorStop(0, 'rgba(35, 34, 32, 0.22)');
+      shadowGrad.addColorStop(0.65, 'rgba(35, 34, 32, 0.06)');
+      shadowGrad.addColorStop(1, 'rgba(35, 34, 32, 0)');
+      ctx.fillStyle = shadowGrad;
+      ctx.beginPath();
+      ctx.ellipse(w * 0.5, shadowY, 260, 24, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      traceNormalPillowPath(ctx, shape, w, h);
+      ctx.fillStyle = baseColor;
+      ctx.fill();
+
+      ctx.save();
+      ctx.clip();
+
+      drawNormalFabricPattern(ctx, item, w, h);
+
+      const lightGrad = ctx.createRadialGradient(w * 0.42, h * 0.34, 24, w * 0.5, h * 0.52, 370);
+      lightGrad.addColorStop(0, 'rgba(255, 255, 255, 0.38)');
+      lightGrad.addColorStop(0.55, 'rgba(255, 255, 255, 0.04)');
+      lightGrad.addColorStop(1, 'rgba(25, 22, 30, 0.22)');
+      ctx.fillStyle = lightGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      if (shape === 'blanket') {
+        ctx.strokeStyle = adjustHexColor(pipingColor, -15);
+        ctx.lineWidth = 3;
+        ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        ctx.moveTo(195, 210);
+        ctx.quadraticCurveTo(380, 185, 565, 212);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      ctx.restore();
+
+      traceNormalPillowPath(ctx, shape, w, h);
+      ctx.strokeStyle = adjustHexColor(pipingColor, -10);
+      ctx.lineWidth = shape === 'square' || shape === 'round' ? 3.5 : 1.8;
+      ctx.stroke();
+      ctx.restore();
+
+      if (shape.startsWith('plush-')) {
+        drawPlushCharacterDetails(ctx, shape, baseColor, pipingColor, w, h);
+      }
+    }
+
+    // ลองโหลดภาพสำรองจาก fallbacks ก่อน ถ้าไม่มีไฟล์รูปในเครื่องจะซ่อน img เพื่อโชว์ภาพ Canvas สตูดิโอที่อยู่ด้านล่างแทน
+    function handleCartImgError(imgEl, itemId) {
+      const prod = PRODUCT_CATALOG[itemId] || {};
+      const fallbacks = prod.fallbacks || [];
+      const tried = parseInt(imgEl.dataset.tried || '0', 10);
+
+      if (tried < fallbacks.length) {
+        imgEl.dataset.tried = String(tried + 1);
+        imgEl.src = fallbacks[tried];
+      } else {
+        imgEl.style.display = 'none';
+      }
+    }
+
+    // =========================================================================
+    // 3. โหลดรายการสินค้าจาก localStorage หรือ URL Query (?items=...)
+    // =========================================================================
+    function saveCartToStorage() {
+      try {
+        localStorage.setItem('cloudy_pillow_cart', JSON.stringify(cart));
+      } catch (e) {}
+    }
+
+    function initCartFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const itemsParam = params.get('items');
+
+      // 1. หากมีพารามิเตอร์ ?items= ส่งมาจากปุ่มตะกร้า ให้อ่านรายการที่เลือกล่าสุดก่อน
+      if (itemsParam) {
+        const ids = itemsParam.split(',').filter(Boolean);
+        const urlCart = [];
+        ids.forEach((id) => {
+          const prod = PRODUCT_CATALOG[id] || {
+            id,
+            name: `สินค้า Cloudy Pillow (${id})`,
+            price: 299,
+            image: 'Pic/หมอนหนุนขาว.jpg',
+            shape: 'square',
+            color: '#EFE9DD'
+          };
+          const existing = urlCart.find((c) => c.id === id);
+          if (existing) {
+            existing.qty += 1;
+          } else {
+            urlCart.push({ ...prod, qty: 1 });
+          }
+        });
+        if (urlCart.length > 0) {
+          cart = urlCart;
+          saveCartToStorage();
+          return;
+        }
+      }
+
+      // 2. อ่านข้อมูลจาก localStorage ที่บันทึกไว้จริง (ไม่มีการใส่สินค้าตัวอย่างปลอม)
+      try {
+        const saved = JSON.parse(localStorage.getItem('cloudy_pillow_cart') || '[]');
+        if (Array.isArray(saved)) {
+          cart = saved.map((item) => {
+            const catalogRef = PRODUCT_CATALOG[item.id];
+            return {
+              ...item,
+              name: (catalogRef && catalogRef.name) || item.name,
+              price: (catalogRef && catalogRef.price) || item.price,
+              image: (catalogRef && catalogRef.image) || item.image || 'Pic/หมอนหนุนขาว.jpg',
+              qty: item.qty || 1
+            };
+          });
+        } else {
+          cart = [];
+        }
+      } catch (e) {
+        cart = [];
+      }
+    }
+
+    // =========================================================================
+    // 4. ตรวจสอบและใช้งานโค้ดส่วนลด
+    // =========================================================================
+    function applyPromoCode() {
+      const inputEl = document.getElementById('promo-input');
+      const rawCode = (inputEl.value || '').trim().toUpperCase();
+
+      if (!rawCode) {
+        showPromoFeedback('กรุณากรอกรหัสโค้ดส่วนลดก่อนกดใช้โค้ด', false);
+        return;
+      }
+
+      const promo = PROMO_CODES[rawCode];
+      if (!promo) {
+        activePromo = null;
+        showPromoFeedback(`ไม่พบโค้ดส่วนลด "${rawCode}" หรือโค้ดหมดอายุแล้ว`, false);
+        renderCartAndTotals();
+        return;
+      }
+
+      // คำนวณยอดรวมค่าสินค้าปัจจุบันเพื่อเช็กเงื่อนไขยอดขั้นต่ำ (minSpend)
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      if (subtotal < promo.minSpend) {
+        const diff = promo.minSpend - subtotal;
+        showPromoFeedback(`โค้ด ${promo.code} ใช้ได้เมื่อสั่งซื้อครบ ฿${promo.minSpend.toLocaleString()} (ขาดอีก ฿${diff.toLocaleString()})`, false);
+        return;
+      }
+
+      // บันทึกโค้ดที่ผ่านเงื่อนไขและคำนวณราคาใหม่
+      activePromo = promo;
+      showPromoFeedback(`ใช้โค้ด ${promo.code} สำเร็จ! (${promo.description})`, true);
+      renderCartAndTotals();
+    }
+
+    // กดปุ่มโค้ดแนะนำด้านล่างเพื่อกรอกและใช้งานอัตโนมัติ
+    function quickApplyPromo(code) {
+      document.getElementById('promo-input').value = code;
+      applyPromoCode();
+    }
+
+    // ยกเลิกการใช้โค้ดส่วนลด
+    function removePromoCode() {
+      activePromo = null;
+      document.getElementById('promo-input').value = '';
+      document.getElementById('promo-message').classList.add('hidden');
+      renderCartAndTotals();
+    }
+
+    // แสดงกล่องข้อความแจ้งผลการใส่โค้ด
+    function showPromoFeedback(message, isSuccess) {
+      const msgEl = document.getElementById('promo-message');
+      msgEl.textContent = (isSuccess ? '✅ ' : '⚠️ ') + message;
+      msgEl.className = isSuccess
+        ? 'mt-2.5 text-xs font-medium px-3 py-2 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200'
+        : 'mt-2.5 text-xs font-medium px-3 py-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-200';
+      msgEl.classList.remove('hidden');
+    }
+
+    // =========================================================================
+    // 5. คำนวณยอดเงินสุทธิ (ยอดสินค้า + ค่าจัดส่ง - ส่วนลด) และอัปเดตหน้าจอ
+    // =========================================================================
+    function renderCartAndTotals() {
+      const listEl = document.getElementById('cart-items-list');
+
+      if (cart.length === 0) {
+        listEl.innerHTML = `
+          <div class="bg-white/90 rounded-3xl p-10 text-center border border-purple-100">
+            <p class="text-4xl mb-3">☁️</p>
+            <p class="font-bold text-[#2D2438]">ยังไม่มีสินค้าในตะกร้า</p>
+            <p class="text-xs text-slate-500 mt-1 mb-4">เลือกชมหมอนนุ่มๆ สไตล์มินิมอลพาสเทลได้เลย</p>
+            <a href="products.html" class="inline-block px-5 py-2.5 rounded-xl bg-purple-600 text-white text-xs font-semibold">ไปเลือกซื้อสินค้า</a>
+          </div>
+        `;
+      } else {
+        listEl.innerHTML = cart.map((item, idx) => `
+          <div class="bg-white/95 rounded-2xl p-4 border border-purple-100 shadow-2xs flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-white border border-purple-100 overflow-hidden shrink-0 flex items-center justify-center">
+                <canvas
+                  class="cart-studio-canvas w-full h-full object-contain p-1"
+                  data-id="${item.id}"
+                ></canvas>
+                <img
+                  src="${item.image}"
+                  alt="${item.name}"
+                  onload="this.classList.remove('opacity-0'); this.classList.add('opacity-100');"
+                  onerror="handleCartImgError(this, '${item.id}')"
+                  class="opacity-0 transition-opacity duration-200 absolute inset-0 z-10 w-full h-full object-contain bg-white p-1"
+                />
+              </div>
+              <div>
+                <h3 class="font-bold text-sm sm:text-base text-[#2D2438]">${item.name}</h3>
+                <p class="text-xs sm:text-sm font-semibold text-purple-700 mt-0.5">฿${item.price.toLocaleString()} / ชิ้น</p>
+                <button type="button" onclick="removeItem(${idx})" class="text-[11px] text-rose-500 hover:underline mt-1 cursor-pointer">ลบรายการ</button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 bg-purple-50 px-2.5 py-1.5 rounded-xl border border-purple-100">
+              <button type="button" onclick="changeQty(${idx}, -1)" class="w-6 h-6 rounded-lg bg-white text-purple-700 font-bold shadow-2xs cursor-pointer">-</button>
+              <span class="text-sm font-bold w-6 text-center">${item.qty}</span>
+              <button type="button" onclick="changeQty(${idx}, 1)" class="w-6 h-6 rounded-lg bg-white text-purple-700 font-bold shadow-2xs cursor-pointer">+</button>
+            </div>
+          </div>
+        `).join('');
+
+        document.querySelectorAll('.cart-studio-canvas').forEach(renderCartCanvasThumbnail);
+      }
+
+      // คำนวณยอดรวมสินค้าและจำนวนชิ้น
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      let shippingFee = subtotal > 0 ? BASE_SHIPPING_FEE : 0;
+      let discountAmount = 0;
+
+      // ตรวจสอบเงื่อนไขโค้ดส่วนลดที่ใช้งานอยู่ (เผื่อผู้ใช้ลดจำนวนสินค้าลงจนต่ำกว่าขั้นต่ำ)
+      if (activePromo && subtotal < activePromo.minSpend) {
+        showPromoFeedback(`ยอดสั่งซื้อต่ำกว่าขั้นต่ำ ฿${activePromo.minSpend.toLocaleString()} ระบบยกเลิกโค้ด ${activePromo.code} อัตโนมัติ`, false);
+        activePromo = null;
+      }
+
+      // คำนวณมูลค่าส่วนลดตามประเภทโค้ด
+      if (activePromo && subtotal > 0) {
+        if (activePromo.type === 'fixed') {
+          discountAmount = Math.min(activePromo.value, subtotal);
+        } else if (activePromo.type === 'percent') {
+          const rawPercent = Math.round((subtotal * activePromo.value) / 100);
+          discountAmount = activePromo.maxDiscount ? Math.min(rawPercent, activePromo.maxDiscount) : rawPercent;
+        } else if (activePromo.type === 'shipping') {
+          discountAmount = shippingFee; // ลดค่าจัดส่งเต็มจำนวน
+        }
+      }
+
+      const grandTotal = Math.max(0, subtotal + shippingFee - discountAmount);
+
+      // อัปเดตตัวเลขบนหน้าจอ
+      document.getElementById('cart-badge').textContent = totalQty;
+      document.getElementById('summary-qty').textContent = totalQty;
+      document.getElementById('summary-subtotal').textContent = `฿${subtotal.toLocaleString()}`;
+      document.getElementById('summary-shipping').textContent = shippingFee === 0 ? 'ฟรี' : `฿${shippingFee.toLocaleString()}`;
+
+      const discountRow = document.getElementById('discount-row');
+      if (activePromo && discountAmount > 0) {
+        discountRow.classList.remove('hidden');
+        document.getElementById('applied-code-label').textContent = activePromo.code;
+        document.getElementById('summary-discount').textContent = `-฿${discountAmount.toLocaleString()}`;
+      } else {
+        discountRow.classList.add('hidden');
+      }
+
+      document.getElementById('summary-total').textContent = `฿${grandTotal.toLocaleString()}`;
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCartToStorage();
+      renderCartAndTotals();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCartToStorage();
+      renderCartAndTotals();
+    }
+
+    function checkoutOrder() {
+      const statusBox = document.getElementById('checkout-status');
+      if (cart.length === 0) {
+        statusBox.textContent = '⚠️ กรุณาเลือกสินค้าลงตะกร้าก่อนดำเนินการชำระเงิน';
+        statusBox.classList.remove('hidden');
+        return;
+      }
+      const totalText = document.getElementById('summary-total').textContent;
+      const numericTotal = parseInt(totalText.replace(/[^\d]/g, ''), 10) || 0;
+      const codeInfo = activePromo ? ` (ใช้โค้ดส่วนลด ${activePromo.code} เรียบร้อยแล้ว)` : '';
+
+      // สร้างเลขที่คำสั่งซื้อใหม่และเพิ่มเข้าตารางสถานะการจัดส่งด้วยสถานะเริ่มต้น "รอดำเนินการ"
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      const orderId = `#CP-2026-${randomNum}`;
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('th-TH', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
+        ' ' + now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+      ordersList.unshift({
+        orderId,
+        dateTime: dateStr,
+        customerName: 'ลูกค้าออนไลน์',
+        itemsSummary: cart.map((it) => `${it.name} (${it.qty})`).join(', '),
+        netTotal: numericTotal,
+        status: 'pending'
+      });
+      saveOrdersToStorage();
+      renderOrdersTable();
+
+      statusBox.innerHTML = `🎉 <b>บันทึกคำสั่งซื้อ ${orderId} สำเร็จ!</b><br/>ยอดชำระสุทธิทั้งหมด <b>${totalText}</b>${codeInfo}<br/>สถานะปัจจุบัน: <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-semibold text-xs">🟡 รอดำเนินการ</span>`;
+      statusBox.classList.remove('hidden');
+    }
+
+    // =========================================================================
+    // 6. ระบบจัดการสถานะการจัดส่ง 6 สี (รอดำเนินการ -> ของโดนตีกลับ)
+    // =========================================================================
+    const SHIPPING_STATUS_CONFIG = {
+      pending: {
+        key: 'pending',
+        label: 'รอดำเนินการ',
+        dot: '🟡',
+        badgeClass: 'bg-amber-100 text-amber-800 border-amber-300'
+      },
+      pickup: {
+        key: 'pickup',
+        label: 'รอขนส่งเข้ารับ',
+        dot: '🔵',
+        badgeClass: 'bg-sky-100 text-sky-800 border-sky-300'
+      },
+      shipping: {
+        key: 'shipping',
+        label: 'กำลังดำเนินการจัดส่ง',
+        dot: '🟣',
+        badgeClass: 'bg-purple-100 text-purple-800 border-purple-300'
+      },
+      delivered: {
+        key: 'delivered',
+        label: 'จัดส่งสำเร็จ',
+        dot: '🟢',
+        badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300'
+      },
+      failed: {
+        key: 'failed',
+        label: 'จัดส่งไม่สำเร็จ',
+        dot: '🔴',
+        badgeClass: 'bg-rose-100 text-rose-800 border-rose-300'
+      },
+      returned: {
+        key: 'returned',
+        label: 'ของโดนตีกลับ',
+        dot: '🟠',
+        badgeClass: 'bg-orange-100 text-orange-800 border-orange-300'
+      }
+    };
+
+    let ordersList = [];
+
+    function loadOrdersFromStorage() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('cloudy_pillow_orders') || '[]');
+        if (Array.isArray(saved) && saved.length > 0) {
+          ordersList = saved;
+          return;
+        }
+      } catch (e) {}
+
+      // ข้อมูลตัวอย่างอ้างอิงจากตาราง Google Sheets ของคุณ
+      ordersList = [
+        {
+          orderId: '#CP-2026-8207',
+          dateTime: '20/11/2026 10:00:30',
+          customerName: 'Pxat',
+          itemsSummary: 'หมอนอิง Lavender Soft, หมอนอิง Mint Breeze (2 ชิ้น)',
+          netTotal: 810,
+          status: 'pending'
+        }
+      ];
+      saveOrdersToStorage();
+    }
+
+    function saveOrdersToStorage() {
+      try {
+        localStorage.setItem('cloudy_pillow_orders', JSON.stringify(ordersList));
+      } catch (e) {}
+    }
+
+    function updateOrderShippingStatus(index, newStatusKey) {
+      if (!ordersList[index] || !SHIPPING_STATUS_CONFIG[newStatusKey]) return;
+      ordersList[index].status = newStatusKey;
+      saveOrdersToStorage();
+      renderOrdersTable();
+    }
+
+    function renderOrdersTable() {
+      const tbody = document.getElementById('order-status-tbody');
+      if (!tbody) return;
+
+      tbody.innerHTML = ordersList.map((order, idx) => {
+        const st = SHIPPING_STATUS_CONFIG[order.status] || SHIPPING_STATUS_CONFIG.pending;
+        const optionsHtml = Object.values(SHIPPING_STATUS_CONFIG).map((opt) =>
+          `<option value="${opt.key}" ${opt.key === order.status ? 'selected' : ''}>${opt.dot} ${opt.label}</option>`
+        ).join('');
+
+        return `
+          <tr class="hover:bg-purple-50/40 transition">
+            <td class="py-3.5 px-4 font-bold text-[#2D2438] whitespace-nowrap">${order.orderId}</td>
+            <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">${order.dateTime}</td>
+            <td class="py-3.5 px-4 font-medium text-[#2D2438] whitespace-nowrap">${order.customerName}</td>
+            <td class="py-3.5 px-4 text-slate-600 max-w-xs">${order.itemsSummary}</td>
+            <td class="py-3.5 px-4 font-bold text-purple-700 text-right whitespace-nowrap">฿${Number(order.netTotal || 0).toLocaleString()}</td>
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${st.badgeClass}">
+                <span>${st.dot}</span>
+                <span>${st.label}</span>
+              </span>
+            </td>
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              <select
+                onchange="updateOrderShippingStatus(${idx}, this.value)"
+                aria-label="เปลี่ยนสถานะการจัดส่ง"
+                class="px-3 py-1.5 rounded-xl border border-purple-200 bg-white text-xs font-medium text-[#2D2438] focus:outline-none focus:border-purple-500 cursor-pointer"
+              >
+                ${optionsHtml}
+              </select>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // เริ่มต้นทำงานเมื่อโหลดหน้าเว็บ
+    window.addEventListener('DOMContentLoaded', () => {
+      initCartFromUrl();
+      renderCartAndTotals();
+      loadOrdersFromStorage();
+      renderOrdersTable();
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

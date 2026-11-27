@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สินค้าทั้งหมด | Cloudy Pillow</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Prompt', 'Inter', sans-serif;
+      background: linear-gradient(135deg, #FDF8FA 0%, #FAF5FF 48%, #FDECE6 100%);
+      color: #2D2438;
+      min-height: 100vh;
+    }
+    /* พื้นหลังสตูดิโอสีขาวบริสุทธิ์ให้กลมกลืนกับภาพถ่ายสินค้าจริง */
+    .studio-photo-box {
+      background-color: #FFFFFF;
+      box-shadow: inset 0 0 24px rgba(244, 240, 248, 0.55);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen overflow-x-hidden">
+
+  <!-- แถบประกาศด้านบนสุด -->
+  <div class="w-full bg-gradient-to-r from-[#8B5CF6] via-[#9333EA] to-[#A855F7] text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium shadow-xs">
+    ฉลองเปิดร้านใหม่! จัดส่งฟรีทั่วประเทศทุกออเดอร์ | แถมฟรีสเปรย์ฉีดหมอนลาเวนเดอร์เมื่อชำระผ่าน PromptPay
+  </div>
+
+  <!-- แบนเนอร์ภาพหลักด้านบน -->
+  <div class="w-full bg-purple-100/50 overflow-hidden border-b border-purple-100">
+    <img
+      src="Pic/banner.jpg"
+      alt="แบนเนอร์ร้าน Cloudy Pillow"
+      onerror="this.parentElement.style.display='none';"
+      class="w-full max-h-[240px] sm:max-h-[340px] lg:max-h-[420px] object-cover object-center block"
+    />
+  </div>
+
+  <!-- แถบเมนูนำทางหลัก -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-purple-100/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3 group shrink-0">
+          <img
+            src="Pic/LOGO.jpg"
+            alt="โลโก้ร้าน Cloudy Pillow"
+            onerror="this.src='https://placehold.co/80x80/F3E8FF/7E22CE?text=CP';"
+            class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-pink-200/80 shadow-sm group-hover:scale-105 transition-transform bg-white"
+          />
+          <div>
+            <div class="text-xl font-bold tracking-tight leading-none">
+              <span class="text-[#2D2438]">Cloudy</span><span class="text-[#F48FB1]">Pillow</span>
+            </div>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 tracking-wider uppercase mt-1">
+              SOFT PILLOWS • BETTER DAYS
+            </p>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a href="index.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            หน้าหลัก
+          </a>
+          <a href="products.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-purple-100/80 text-purple-700 font-semibold text-sm transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            สินค้าทั้งหมด
+          </a>
+          <a href="reviews.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            รีวิวสินค้า
+          </a>
+          <a href="contact.html" class="flex items-center gap-1.5 px-4 py-2 rounded-full text-slate-600 hover:text-purple-700 hover:bg-purple-50/60 font-medium text-sm transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            ติดต่อร้านค้า
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5">
+          <a
+            href="login.html"
+            class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-purple-700 border border-slate-200/80 text-sm font-medium transition"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            <span>เข้าสู่ระบบ</span>
+          </a>
+
+          <a
+            id="nav-cart-link"
+            href="cart.html"
+            class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-[#F48FB1] to-[#F06292] hover:opacity-95 text-white text-sm font-semibold shadow-md shadow-pink-200/80 transition"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>ตะกร้าสินค้า</span>
+            <span id="cart-badge" class="bg-white text-pink-600 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+          </a>
+
+          <button
+            type="button"
+            id="mobile-menu-btn"
+            aria-label="เปิดเมนู"
+            class="lg:hidden p-2.5 rounded-full bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200/70 transition"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- เมนูสำหรับหน้าจอมือถือ -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-purple-100 px-4 pt-3 pb-5 space-y-1.5 shadow-lg">
+      <a href="index.html" class="block px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium">หน้าหลัก</a>
+      <a href="products.html" class="block px-4 py-2.5 rounded-2xl bg-purple-50 text-purple-700 font-semibold text-sm">สินค้าทั้งหมด</a>
+      <a href="reviews.html" class="block px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium">รีวิวสินค้า</a>
+      <a href="contact.html" class="block px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium">ติดต่อร้านค้า</a>
+      <a href="cart.html" class="block px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium">ตะกร้าสินค้า</a>
+      <a href="login.html" class="block px-4 py-2.5 rounded-2xl text-slate-600 hover:bg-purple-50/60 text-sm font-medium">หน้าล็อคอิน</a>
+    </div>
+  </header>
+
+  <!-- เนื้อหาหลักหน้าสินค้าทั้งหมด -->
+  <main id="main-content" class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <span class="inline-block px-3.5 py-1 rounded-full bg-purple-100/80 text-purple-700 text-xs font-semibold tracking-wide mb-2">
+        CLOUDY PILLOW COLLECTION • STUDIO CATALOG
+      </span>
+      <h1 class="text-2xl sm:text-3xl font-bold text-[#2D2438]">คอลเลกชันหมอนทั้งหมด (36 แบบ)</h1>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1.5">
+        รวมหมอนครบทั้ง 6 หมวดหมู่ไว้ในหน้าเดียว ราคาสบายกระเป๋า 199 – 499 บาท เลือกชมทั้งหมดหรือกดกรองตามประเภทหมอนที่ต้องการ
+      </p>
+    </div>
+
+    <!-- ปุ่มแสดงทั้งหมดในหน้านี้ -->
+    <div class="flex flex-wrap items-center justify-center gap-2.5 mb-6">
+      <button
+        type="button"
+        data-cat="all"
+        onclick="selectCategory('all')"
+        class="folder-btn px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold text-xs sm:text-sm shadow-md transition cursor-pointer"
+      >
+        แสดงสินค้าทั้งหมดในหน้านี้ (36 แบบ)
+      </button>
+    </div>
+
+    <!-- แถบเลือกหมวดหมู่ทั้ง 6 หมวด -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-9">
+      <button type="button" data-cat="cushion" onclick="selectCategory('cushion')" class="folder-btn flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/95 hover:bg-purple-50 border-2 border-purple-100 text-[#2D2438] transition cursor-pointer text-left shadow-2xs">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>
+          </span>
+          <div>
+            <p class="text-xs sm:text-sm font-bold leading-tight">หมอนอิง</p>
+            <p class="text-[11px] text-slate-500">6 ลาย/สี</p>
+          </div>
+        </div>
+      </button>
+
+      <button type="button" data-cat="pillow" onclick="selectCategory('pillow')" class="folder-btn flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/95 hover:bg-purple-50 border-2 border-purple-100 text-[#2D2438] transition cursor-pointer text-left shadow-2xs">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4"/></svg>
+          </span>
+          <div>
+            <p class="text-xs sm:text-sm font-bold leading-tight">หมอนหนุน</p>
+            <p class="text-[11px] text-slate-500">6 ลาย/สี</p>
+          </div>
+        </div>
+      </button>
+
+      <button type="button" data-cat="neck" onclick="selectCategory('neck')" class="folder-btn flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/95 hover:bg-purple-50 border-2 border-purple-100 text-[#2D2438] transition cursor-pointer text-left shadow-2xs">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 17a6 6 0 1112 0"/></svg>
+          </span>
+          <div>
+            <p class="text-xs sm:text-sm font-bold leading-tight">หมอนรองคอ</p>
+            <p class="text-[11px] text-slate-500">6 ลาย/สี</p>
+          </div>
+        </div>
+      </button>
+
+      <button type="button" data-cat="blanket" onclick="selectCategory('blanket')" class="folder-btn flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/95 hover:bg-purple-50 border-2 border-purple-100 text-[#2D2438] transition cursor-pointer text-left shadow-2xs">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16v10H4zM8 17v3h8v-3"/></svg>
+          </span>
+          <div>
+            <p class="text-xs sm:text-sm font-bold leading-tight">หมอนผ้าห่ม</p>
+            <p class="text-[11px] text-slate-500">6 ลาย/สี</p>
+          </div>
+        </div>
+      </button>
+
+      <button type="button" data-cat="plush" onclick="selectCategory('plush')" class="folder-btn flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/95 hover:bg-purple-50 border-2 border-purple-100 text-[#2D2438] transition cursor-pointer text-left shadow-2xs">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="13" r="6"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="6" r="2"/></svg>
+          </span>
+          <div>
+            <p class="text-xs sm:text-sm font-bold leading-tight">หมอนตุ๊กตา</p>
+            <p class="text-[11px] text-slate-500">6 ลาย/สี</p>
+          </div>
+        </div>
+      </button>
+
+      <button type="button" data-cat="bolster" onclick="selectCategory('bolster')" class="folder-btn flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/95 hover:bg-purple-50 border-2 border-purple-100 text-[#2D2438] transition cursor-pointer text-left shadow-2xs">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="4"/></svg>
+          </span>
+          <div>
+            <p class="text-xs sm:text-sm font-bold leading-tight">หมอนข้าง</p>
+            <p class="text-[11px] text-slate-500">6 ลาย/สี</p>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <!-- พื้นที่แสดงรายการสินค้าทั้งหมดในหน้าเดียวกัน -->
+    <div id="catalog-container" class="space-y-12"></div>
+  </main>
+
+  <!-- Toast แจ้งเตือนเมื่อกดเพิ่มลงตะกร้า -->
+  <div id="toast-box" class="fixed bottom-5 right-5 z-50 hidden bg-white border border-purple-200 shadow-xl rounded-2xl px-4 py-3.5 flex items-center gap-3 max-w-sm">
+    <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <div class="text-xs sm:text-sm">
+      <p id="toast-text" class="font-semibold text-[#2D2438]">เพิ่มสินค้าลงตะกร้าแล้ว</p>
+      <a id="toast-cart-link" href="cart.html" class="text-xs text-pink-600 font-semibold hover:underline">ไปยังหน้าตะกร้าสินค้า →</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white/90 border-t border-purple-100 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-5">
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
+        <a href="index.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">หน้าหลัก</a>
+        <a href="products.html" class="px-3.5 py-1.5 rounded-full bg-purple-100 text-purple-700 font-semibold">สินค้าทั้งหมด</a>
+        <a href="reviews.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">รีวิวสินค้า</a>
+        <a href="contact.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">ติดต่อร้านค้า</a>
+        <a href="cart.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">ตะกร้าสินค้า</a>
+        <a href="login.html" class="px-3.5 py-1.5 rounded-full hover:bg-purple-50 text-slate-600 transition">หน้าล็อคอิน</a>
+      </div>
+      <p class="text-center text-xs text-slate-400">© 2026 Cloudy Pillow Thailand • Soft Pillows • Better Days</p>
+    </div>
+  </footer>
+
+  <script>
+    // เปิด/ปิดเมนูบนมือถือ
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    }
+
+    // ข้อมูลสินค้าทั้ง 6 หมวดหมู่ (36 รายการ) ปรับราคาให้อยู่ในช่วง 199 - 499 บาท
+    const categoryData = {
+      cushion: {
+        title: 'หมอนอิง',
+        subtitle: 'หมอนอิงทรงสี่เหลี่ยม ทรงกลม และทรงหัวใจ ตัดเย็บขอบกุ๊นประณีตสำหรับตกแต่งโซฟา (6 ลาย/สี)',
+        items: [
+          {
+            id: 'cushion-1',
+            image: 'Pic/S__42606615.jpg',
+            fallbackImages: ['Pic/cushion-1.jpg', 'Pic/cushion-1.png'],
+            shape: 'square',
+            pattern: 'woven',
+            baseColor: '#EFE9DD',
+            pipingColor: '#DFD6C5',
+            swatch: '#EFE9DD',
+            name: 'หมอนอิง Cream Piped Square',
+            colorName: 'สีขาวครีม - ทรงสี่เหลี่ยมขอบกุ๊น',
+            desc: 'ปลอกผ้าทอเนื้อแน่นสีขาวครีมอบอุ่น ตัดเย็บขอบกุ๊นรอบใบ ทรงสวยตั้งฟูเข้ากับโซฟาทุกสไตล์',
+            oldPrice: 390,
+            price: 259,
+            stock: 20,
+            rating: '4.9 (128)'
+          },
+          {
+            id: 'cushion-2',
+            image: 'Pic/S__42606616.jpg',
+            fallbackImages: ['Pic/cushion-2.jpg', 'Pic/cushion-2.png'],
+            shape: 'square',
+            pattern: 'woven',
+            baseColor: '#F3C3CC',
+            pipingColor: '#E1A6B2',
+            swatch: '#F3C3CC',
+            name: 'หมอนอิง Sakura Piped Square',
+            colorName: 'สีชมพูซากุระ - ทรงสี่เหลี่ยมขอบกุ๊น',
+            desc: 'โทนชมพูซากุระพาสเทลละมุนตา เย็บขอบกุ๊นสีเข้าชุด เนื้อผ้านุ่มลื่นไม่ระคายผิว',
+            oldPrice: 390,
+            price: 259,
+            stock: 20,
+            rating: '5.0 (210)'
+          },
+          {
+            id: 'cushion-3',
+            image: 'Pic/S__42606617.jpg',
+            fallbackImages: ['Pic/cushion-3.jpg', 'Pic/cushion-3.png'],
+            shape: 'round',
+            pattern: 'woven',
+            baseColor: '#88598A',
+            pipingColor: '#6D436F',
+            swatch: '#88598A',
+            name: 'หมอนอิง Plum Velvet Round',
+            colorName: 'สีม่วงพลัม - ทรงกลมขอบกุ๊น',
+            desc: 'หมอนอิงทรงกลมดีไซน์มินิมอลสีม่วงพลัมหรูหรา แต่งขอบกุ๊นประณีต ไส้แน่นเด้งกอดสบาย',
+            oldPrice: 450,
+            price: 299,
+            stock: 19,
+            rating: '4.9 (164)'
+          },
+          {
+            id: 'cushion-4',
+            image: 'Pic/S__42606618.jpg',
+            fallbackImages: ['Pic/cushion-4.jpg', 'Pic/cushion-4.png'],
+            shape: 'heart',
+            pattern: 'velvet',
+            baseColor: '#EFC0C9',
+            pipingColor: '#D89FA9',
+            swatch: '#EFC0C9',
+            name: 'หมอนอิง Pastel Velvet Heart',
+            colorName: 'สีชมพูพาสเทล - ทรงหัวใจกำมะหยี่',
+            desc: 'หมอนอิงทรงหัวใจผ้ากำมะหยี่ขนนุ่มพิเศษ สีชมพูอ่อนหวานละมุน เหมาะแต่งเตียงหรือเป็นของขวัญ',
+            oldPrice: 450,
+            price: 299,
+            stock: 18,
+            rating: '5.0 (245)'
+          },
+          {
+            id: 'cushion-5',
+            image: 'Pic/S__42606620.jpg',
+            fallbackImages: ['Pic/cushion-5.jpg', 'Pic/cushion-5.png'],
+            shape: 'square',
+            pattern: 'vintage-bouquet',
+            baseColor: '#F5F2EA',
+            pipingColor: '#91A38E',
+            swatch: '#D4DFD0',
+            name: 'หมอนอิง Vintage Rose Bouquet',
+            colorName: 'สีครีมลายช่อดอกไม้ - ขอบกุ๊นเขียวเซจ',
+            desc: 'พิมพ์ลายช่อดอกกุหลาบวินเทจบนพื้นผ้าสีครีม ตัดขอบกุ๊นสีเขียวเซจสุดคลาสสิก ปลอกถอดซักได้',
+            oldPrice: 490,
+            price: 319,
+            stock: 16,
+            rating: '4.9 (182)'
+          },
+          {
+            id: 'cushion-6',
+            image: 'Pic/S__42606621.jpg',
+            fallbackImages: ['Pic/cushion-6.jpg', 'Pic/cushion-6.png'],
+            shape: 'square',
+            pattern: 'pastel-bows',
+            baseColor: '#F5F3EC',
+            pipingColor: '#91A38E',
+            swatch: '#E9D5FF',
+            name: 'หมอนอิง Pastel Ribbon Bows',
+            colorName: 'สีครีมลายโบว์พาสเทล - ขอบกุ๊นเขียวเซจ',
+            desc: 'ลายโบว์ริบบิ้นสีพาสเทลสลับสีน่ารักละมุน ตัดเย็บขอบกุ๊นสีเขียวเซจ นุ่มฟูไม่ยุบตัวง่าย',
+            oldPrice: 490,
+            price: 319,
+            stock: 17,
+            rating: '5.0 (198)'
+          }
+        ]
+      },
+      pillow: {
+        title: 'หมอนหนุน',
+        subtitle: 'หมอนหนุนใยไมโครเจลเกรดโรงแรม รองรับศีรษะและต้นคออย่างสมดุล (6 ลาย/สี)',
+        items: [
+          {
+            id: 'pillow-1',
+            image: 'Pic/หมอนหนุนขาว.jpg',
+            fallbackImages: ['Pic/S__42606598_0.jpg', 'Pic/pillow-1.jpg'],
+            shape: 'pillow',
+            pattern: 'woven',
+            baseColor: '#F7F7F8',
+            pipingColor: '#E4E4E7',
+            swatch: '#F7F7F8',
+            name: 'หมอนหนุน Pure White Hotel',
+            colorName: 'สีขาวบริสุทธิ์ - เรียบหรูสไตล์โรงแรม',
+            desc: 'หมอนหนุนใยไมโครเจลเกรดโรงแรม 5 ดาว สีขาวสะอาดตา นุ่มฟูโอบรับศีรษะและต้นคออย่างพอดี',
+            oldPrice: 550,
+            price: 359,
+            stock: 25,
+            rating: '5.0 (430)'
+          },
+          {
+            id: 'pillow-2',
+            image: 'Pic/หมอนหนุนม่วง.jpg',
+            fallbackImages: ['Pic/S__42606600_0.jpg', 'Pic/pillow-2.jpg'],
+            shape: 'pillow',
+            pattern: 'woven',
+            baseColor: '#B89BD4',
+            pipingColor: '#9D7EB9',
+            swatch: '#B89BD4',
+            name: 'หมอนหนุน Lilac Lavender Soft',
+            colorName: 'สีม่วงไลแลค - ผ้าคอตตอนนุ่มละมุน',
+            desc: 'ผ้าคอตตอนทอละเอียดสีม่วงไลแลคพาสเทล ให้สัมผัสเย็นสบายและช่วยสร้างบรรยากาศผ่อนคลายก่อนนอน',
+            oldPrice: 590,
+            price: 389,
+            stock: 20,
+            rating: '4.9 (312)'
+          },
+          {
+            id: 'pillow-3',
+            image: 'Pic/หมอนหนุนลายดอก.jpg',
+            fallbackImages: ['Pic/S__42606601_0.jpg', 'Pic/pillow-3.jpg'],
+            shape: 'pillow',
+            pattern: 'ditsy-floral',
+            baseColor: '#F6F4EF',
+            pipingColor: '#E2D8D5',
+            swatch: '#FBCFE8',
+            name: 'หมอนหนุน Pastel Ditsy Floral',
+            colorName: 'สีขาวครีม - ลายดอกไม้เล็กพาสเทล',
+            desc: 'ปลอกผ้าฝ้ายพิมพ์ลายดอกไม้จิ๋วโทนชมพู ฟ้า เหลือง อ่อนโยนต่อผิวหน้า ระบายอากาศได้ดีเยี่ยม',
+            oldPrice: 590,
+            price: 389,
+            stock: 18,
+            rating: '4.9 (285)'
+          },
+          {
+            id: 'pillow-4',
+            image: 'Pic/หมอนหนุนลายตาราง.jpg',
+            fallbackImages: ['Pic/S__42606602_0.jpg', 'Pic/pillow-4.jpg'],
+            shape: 'pillow',
+            pattern: 'gingham',
+            baseColor: '#F2F2EF',
+            pipingColor: '#B8C1CC',
+            swatch: '#CBD5E1',
+            name: 'หมอนหนุน Nordic Blue Gingham',
+            colorName: 'สีฟ้าเทา - ลายตารางกิงแฮม',
+            desc: 'ลายตารางกิงแฮมโทนสีฟ้าเทาและครีมสไตล์มินิมอล นุ่มเด้งคืนตัวไว รองรับทุกสรีระการนอน',
+            oldPrice: 550,
+            price: 359,
+            stock: 22,
+            rating: '4.9 (196)'
+          },
+          {
+            id: 'pillow-5',
+            image: 'Pic/หมอนหนุนสีเหลือง.jpg',
+            fallbackImages: ['Pic/S__42606599_0.jpg', 'Pic/pillow-5.jpg'],
+            shape: 'pillow',
+            pattern: 'soft-clouds',
+            baseColor: '#EFE6D2',
+            pipingColor: '#DFD4BC',
+            swatch: '#EFE6D2',
+            name: 'หมอนหนุน Cream Cloudy Sky',
+            colorName: 'สีเหลืองครีม - ลายก้อนเมฆปุยขาว',
+            desc: 'ปลอกผ้าทอสีเหลืองครีมอบอุ่นพิมพ์ลายก้อนเมฆสีขาวฟุ้งละมุน กันไรฝุ่น 100% หลับสบายตลอดคืน',
+            oldPrice: 590,
+            price: 389,
+            stock: 19,
+            rating: '5.0 (340)'
+          },
+          {
+            id: 'pillow-6',
+            image: 'Pic/หมอนหนุนสีเขียว.jpg',
+            fallbackImages: [
+              'Pic/หมอนหนุนเขียว.jpg',
+              'Pic/หมอนหนุนสีเขียว.png',
+              'Pic/หมอนหนุนเขียว.png',
+              'Pic/หมอนหนุนสีเขียว.jpeg',
+              'Pic/หมอนหนุนเขียว.jpeg',
+              'Pic/หนุนเขียว.jpg',
+              'Pic/หนุนสีเขียว.jpg',
+              'Pic/watermarked_img_15592478075221241267.jpg',
+              'Pic/watermarked_img_15592478075221241267.png',
+              'Pic/watermarked_img_15592478075221241267.jpeg',
+              'Pic/S__42606608.jpg',
+              'Pic/S__42606608_0.jpg',
+              'Pic/S__42606619.jpg',
+              'Pic/S__42606619_0.jpg',
+              'Pic/pillow-6.jpg',
+              'Pic/pillow-6.png',
+              'Pic/pillow-6.jpeg'
+            ],
+            shape: 'pillow',
+            pattern: 'sage-leaves',
+            baseColor: '#8B9F87',
+            pipingColor: '#697D65',
+            swatch: '#8B9F87',
+            name: 'หมอนหนุน Sage Botanical Leaf',
+            colorName: 'สีเขียวเซจ - ลายใบไม้และจุดดอกไม้จิ๋ว',
+            desc: 'ปลอกผ้าฝ้ายออร์แกนิกสีเขียวเซจพิมพ์ลายใบไม้ละเอียดและจุดดอกไม้จิ๋ว สัมผัสนุ่มสบายตา ไม่ระคายเคืองผิว',
+            oldPrice: 590,
+            price: 389,
+            stock: 15,
+            rating: '4.9 (178)'
+          }
+        ]
+      },
+      neck: {
+        title: 'หมอนรองคอ',
+        subtitle: 'หมอนรองคอทรงตัวยูโอบรับต้นคอและช่วงบ่า ลดอาการเมื่อยล้าขณะเดินทางและทำงาน (6 ลาย/สี)',
+        items: [
+          {
+            id: 'neck-1',
+            image: 'Pic/หมอนรองคอขาว.jpg',
+            fallbackImages: ['Pic/neck-1.jpg', 'Pic/neck-1.png'],
+            shape: 'neck',
+            pattern: 'woven',
+            baseColor: '#F7F7F8',
+            pipingColor: '#E2E4E9',
+            swatch: '#F7F7F8',
+            name: 'หมอนรองคอ Pure White Cloud',
+            colorName: 'สีขาวบริสุทธิ์ - ผ้าฝ้ายนุ่มสบาย',
+            desc: 'หมอนรองคอทรงโค้งรับต้นคอสีขาวสะอาดตา น้ำหนักเบา ระบายอากาศดีเยี่ยม',
+            oldPrice: 320,
+            price: 199,
+            stock: 20,
+            rating: '4.9 (185)'
+          },
+          {
+            id: 'neck-2',
+            image: 'Pic/รองคอชมพู.jpg',
+            fallbackImages: ['Pic/neck-2.jpg', 'Pic/neck-2.png'],
+            shape: 'neck',
+            pattern: 'velvet',
+            baseColor: '#E69DA8',
+            pipingColor: '#CE7E8A',
+            swatch: '#E69DA8',
+            name: 'หมอนรองคอ Sakura Velvet Neck',
+            colorName: 'สีชมพูซากุระ - ผ้ากำมะหยี่นุ่มพิเศษ',
+            desc: 'ปลอกผ้ากำมะหยี่สีชมพูโรสพาสเทลสัมผัสนุ่มละมุน โอบรับต้นคอได้กระชับไม่ปวดเมื่อย',
+            oldPrice: 320,
+            price: 199,
+            stock: 22,
+            rating: '5.0 (240)'
+          },
+          {
+            id: 'neck-3',
+            image: 'Pic/รองคอฟ้า.jpg',
+            fallbackImages: ['Pic/neck-3.jpg', 'Pic/neck-3.png'],
+            shape: 'neck',
+            pattern: 'woven',
+            baseColor: '#B8D0E8',
+            pipingColor: '#96B5D4',
+            swatch: '#B8D0E8',
+            name: 'หมอนรองคอ Sky Starry Neck',
+            colorName: 'สีฟ้าพาสเทล - ลายดวงดาวขาวเหลือง',
+            desc: 'ผ้าฝ้ายสีฟ้าอ่อนพิมพ์ลายดวงดาวสีขาวและเหลืองนวล น่ารักสดใส พกพาขึ้นเครื่องบินสะดวก',
+            oldPrice: 350,
+            price: 229,
+            stock: 18,
+            rating: '4.9 (195)'
+          },
+          {
+            id: 'neck-4',
+            image: 'Pic/รองคอม่วง.jpg',
+            fallbackImages: ['Pic/neck-4.jpg', 'Pic/neck-4.png'],
+            shape: 'neck',
+            pattern: 'woven',
+            baseColor: '#C4AEDB',
+            pipingColor: '#A68CC2',
+            swatch: '#C4AEDB',
+            name: 'หมอนรองคอ Lavender Dream Neck',
+            colorName: 'สีม่วงลาเวนเดอร์ - ผ้าคอตตอนทอละเอียด',
+            desc: 'สีม่วงลาเวนเดอร์ละมุนตา ช่วยให้ผ่อนคลายระหว่างงีบหลับและเดินทางไกล',
+            oldPrice: 320,
+            price: 199,
+            stock: 21,
+            rating: '4.9 (212)'
+          },
+          {
+            id: 'neck-5',
+            image: 'Pic/รองคอเหลือง.jpg',
+            fallbackImages: ['Pic/neck-5.jpg', 'Pic/neck-5.png'],
+            shape: 'neck',
+            pattern: 'soft-clouds',
+            baseColor: '#F3EBD8',
+            pipingColor: '#DFD4BC',
+            swatch: '#F3EBD8',
+            name: 'หมอนรองคอ Cream Cloudy Neck',
+            colorName: 'สีเหลืองครีม - ลายก้อนเมฆสีขาว',
+            desc: 'ปลอกผ้าฝ้ายสีเหลืองครีมพิมพ์ลายก้อนเมฆปุยขาว นุ่มเด้งคืนตัวไว ปลอกถอดซักได้',
+            oldPrice: 350,
+            price: 229,
+            stock: 19,
+            rating: '5.0 (168)'
+          },
+          {
+            id: 'neck-6',
+            image: 'Pic/รองคอเขียว.jpg',
+            fallbackImages: [
+              'Pic/หมอนรองคอเขียว.jpg',
+              'Pic/รองคอสีเขียว.jpg',
+              'Pic/หมอนรองคอสีเขียว.jpg',
+              'Pic/รองคอเขียว.png',
+              'Pic/หมอนรองคอเขียว.png',
+              'Pic/รองคอสีเขียว.png',
+              'Pic/รองคอเขียว.jpeg',
+              'Pic/หมอนรองคอเขียว.jpeg',
+              'Pic/S__42606608.jpg',
+              'Pic/S__42606608_0.jpg',
+              'Pic/S__42606619.jpg',
+              'Pic/S__42606619_0.jpg',
+              'Pic/neck-6.jpg',
+              'Pic/neck-6.png',
+              'Pic/neck-6.jpeg'
+            ],
+            shape: 'neck',
+            pattern: 'sage-leaves',
+            baseColor: '#8B9F87',
+            pipingColor: '#687B64',
+            swatch: '#8B9F87',
+            name: 'หมอนรองคอ Sage Botanical Neck',
+            colorName: 'สีเขียวเซจ - ลายใบไม้และจุดดอกไม้จิ๋ว',
+            desc: 'ผ้าฝ้ายสีเขียวเซจพิมพ์ลายกิ่งใบไม้และจุดดอกไม้จิ๋วโทนธรรมชาติ น้ำหนักเบาพกพาง่าย รองรับช่วงบ่าและต้นคออย่างนุ่มนวล',
+            oldPrice: 350,
+            price: 229,
+            stock: 17,
+            rating: '4.8 (142)'
+          }
+        ]
+      },
+      blanket: {
+        title: 'หมอนผ้าห่ม',
+        subtitle: 'หมอนอิงกำมะหยี่ขนนุ่มพร้อมซิปกางเป็นผ้าห่มผืนใหญ่ได้ในใบเดียว (6 ลาย/สี)',
+        items: [
+          {
+            id: 'blanket-1',
+            image: 'Pic/S__42606622_2.jpg',
+            fallbackImages: ['Pic/S__42606622.jpg', 'Pic/blanket-1.jpg', 'Pic/blanket-1.png'],
+            shape: 'blanket',
+            pattern: 'blanket-cloud-3d',
+            baseColor: '#EFE9DD',
+            pipingColor: '#DFD6C5',
+            swatch: '#EFE9DD',
+            name: 'หมอนผ้าห่ม Cream Fluffy Cloud',
+            colorName: 'สีขาวครีม - ลายก้อนเมฆนูน 3D',
+            desc: 'หมอนผ้าห่มผ้ากำมะหยี่ขนนุ่มสีขาวครีมปักลายก้อนเมฆนูน ด้านในมีผ้าห่มผืนใหญ่ห่มอุ่นสบาย',
+            oldPrice: 690,
+            price: 459,
+            stock: 18,
+            rating: '5.0 (230)'
+          },
+          {
+            id: 'blanket-2',
+            image: 'Pic/S__42606623_2.jpg',
+            fallbackImages: ['Pic/S__42606623.jpg', 'Pic/blanket-2.jpg', 'Pic/blanket-2.png'],
+            shape: 'blanket',
+            pattern: 'blanket-hearts',
+            baseColor: '#E5B4BE',
+            pipingColor: '#C9909C',
+            swatch: '#E5B4BE',
+            name: 'หมอนผ้าห่ม Rose Sweet Heart',
+            colorName: 'สีชมพูโรส - ลายปักหัวใจ',
+            desc: 'โทนชมพูโรสหวานละมุนปักลายหัวใจทั้งตัวหมอนและผ้าห่มด้านใน สัมผัสนุ่มฟูไม่เป็นขุย',
+            oldPrice: 690,
+            price: 459,
+            stock: 20,
+            rating: '4.9 (275)'
+          },
+          {
+            id: 'blanket-3',
+            image: 'Pic/S__42606624_2.jpg',
+            fallbackImages: ['Pic/S__42606624.jpg', 'Pic/blanket-3.jpg', 'Pic/blanket-3.png'],
+            shape: 'blanket',
+            pattern: 'blanket-galaxy',
+            baseColor: '#43276E',
+            pipingColor: '#2E1852',
+            swatch: '#43276E',
+            name: 'หมอนผ้าห่ม Midnight Starry Galaxy',
+            colorName: 'สีม่วงเข้ม - ลายปักดวงดาวและพระจันทร์',
+            desc: 'ผ้ากำมะหยี่สีม่วงเข้มหรูหราปักลายดาวและพระจันทร์เสี้ยวสีเงินทอง พกติดรถหรือออฟฟิศสะดวก',
+            oldPrice: 750,
+            price: 499,
+            stock: 15,
+            rating: '5.0 (194)'
+          },
+          {
+            id: 'blanket-4',
+            image: 'Pic/S__42606625_2.jpg',
+            fallbackImages: ['Pic/S__42606625.jpg', 'Pic/blanket-4.jpg', 'Pic/blanket-4.png'],
+            shape: 'blanket',
+            pattern: 'blanket-sky-cloud',
+            baseColor: '#8FB7DC',
+            pipingColor: '#6F9AC2',
+            swatch: '#8FB7DC',
+            name: 'หมอนผ้าห่ม Sky Smiling Cloud',
+            colorName: 'สีฟ้าพาสเทล - ลายก้อนเมฆยิ้มซิปดาว',
+            desc: 'สีฟ้าพาสเทลลายก้อนเมฆยิ้มน่ารัก มาพร้อมหัวซิปรูปดาวสีทอง กางเป็นผ้าห่มนุ่มฟูได้ทันที',
+            oldPrice: 690,
+            price: 459,
+            stock: 22,
+            rating: '5.0 (318)'
+          },
+          {
+            id: 'blanket-5',
+            image: 'Pic/หมอนผ้าห่มขาว.jpg',
+            fallbackImages: ['Pic/S__42606626.jpg', 'Pic/blanket-5.jpg', 'Pic/blanket-5.png'],
+            shape: 'blanket',
+            pattern: 'blanket-bunny',
+            baseColor: '#F5F4F0',
+            pipingColor: '#E2E0D8',
+            swatch: '#F5F4F0',
+            name: 'หมอนผ้าห่ม Ivory Cute Bunny',
+            colorName: 'สีขาวงาช้าง - ลายกระต่ายน้อยซิปดาว',
+            desc: 'ปลอกผ้ากำมะหยี่สีขาวงาช้างปักลายกระต่ายน้อยสุดละมุน หัวซิปรูปดาวสีทอง ผ้าห่มหนานุ่มอุ่นกำลังดี',
+            oldPrice: 690,
+            price: 459,
+            stock: 17,
+            rating: '4.9 (260)'
+          },
+          {
+            id: 'blanket-6',
+            image: 'Pic/S__42606627_2.jpg',
+            fallbackImages: ['Pic/S__42606627.jpg', 'Pic/blanket-6.jpg', 'Pic/blanket-6.png'],
+            shape: 'blanket',
+            pattern: 'blanket-meadow',
+            baseColor: '#F6F5F0',
+            pipingColor: '#E2E0D8',
+            swatch: '#D8F3DC',
+            name: 'หมอนผ้าห่ม Pastel Meadow Floral',
+            colorName: 'สีขาวนวล - ลายปักดอกไม้พาสเทล',
+            desc: 'ปักลายทุ่งดอกไม้สีพาสเทลละเอียดทั้งใบหมอนและผืนผ้าห่ม หัวซิปรูปดาว น่ารักสดใสไม่เหมือนใคร',
+            oldPrice: 750,
+            price: 499,
+            stock: 16,
+            rating: '5.0 (215)'
+          }
+        ]
+      },
+      plush: {
+        title: 'หมอนตุ๊กตา',
+        subtitle: 'หมอนตุ๊กตาขนปุยนุ่มนิ่มพิเศษ กอดอุ่นสบายมือ เหมาะแต่งห้องและเป็นของขวัญ (6 ลาย/สี)',
+        items: [
+          {
+            id: 'plush-1',
+            image: 'Pic/S__42606628.jpg',
+            fallbackImages: ['Pic/S__42606628_2.jpg', 'Pic/plush-1.jpg', 'Pic/plush-1.png'],
+            shape: 'plush-cloud',
+            pattern: 'fluffy',
+            baseColor: '#F8F8FA',
+            pipingColor: '#E2E4E9',
+            swatch: '#F8F8FA',
+            name: 'หมอนตุ๊กตา Fluffy White Cloud',
+            colorName: 'สีขาวปุยเมฆ - ก้อนเมฆยิ้ม',
+            desc: 'หมอนตุ๊กตารูปก้อนเมฆหน้ายิ้มขนนุ่มฟูพิเศษ ยัดใยไมโครไฟเบอร์แน่นเด้ง กอดสบายไม่แฟบง่าย',
+            oldPrice: 420,
+            price: 269,
+            stock: 24,
+            rating: '5.0 (350)'
+          },
+          {
+            id: 'plush-2',
+            image: 'Pic/S__42606629_2.jpg',
+            fallbackImages: ['Pic/S__42606629.jpg', 'Pic/plush-2.jpg', 'Pic/plush-2.png'],
+            shape: 'plush-bunny',
+            pattern: 'fluffy',
+            baseColor: '#E8BFC3',
+            pipingColor: '#CFA2A7',
+            swatch: '#E8BFC3',
+            name: 'หมอนตุ๊กตา Chubby Pink Bunny',
+            colorName: 'สีชมพูพาสเทล - น้องกระต่ายหูยาว',
+            desc: 'น้องกระต่ายตัวกลมสีชมพูพาสเทลหูนุ่มนิ่ม ขนละเอียดอ่อนโยนต่อผิว กอดอุ่นมือสุดๆ',
+            oldPrice: 490,
+            price: 329,
+            stock: 19,
+            rating: '5.0 (290)'
+          },
+          {
+            id: 'plush-3',
+            image: 'Pic/S__42606631_2.jpg',
+            fallbackImages: ['Pic/S__42606631.jpg', 'Pic/plush-3.jpg', 'Pic/plush-3.png'],
+            shape: 'plush-bear',
+            pattern: 'fluffy',
+            baseColor: '#DFCBB3',
+            pipingColor: '#C4AD93',
+            swatch: '#DFCBB3',
+            name: 'หมอนตุ๊กตา Cozy Cream Bear',
+            colorName: 'สีครีมเบจ - น้องหมีตัวกลม',
+            desc: 'น้องหมีสีครีมเบจตัวกลมปุ๊กปิ๊ก ขนฟูนุ่มละมุน วางประดับเตียงหรือกอดนอนหลับฝันดี',
+            oldPrice: 490,
+            price: 329,
+            stock: 21,
+            rating: '4.9 (265)'
+          },
+          {
+            id: 'plush-4',
+            image: 'Pic/S__42606632_2.jpg',
+            fallbackImages: ['Pic/S__42606632.jpg', 'Pic/plush-4.jpg', 'Pic/plush-4.png'],
+            shape: 'plush-cat',
+            pattern: 'fluffy',
+            baseColor: '#AC8ED1',
+            pipingColor: '#9171B8',
+            swatch: '#AC8ED1',
+            name: 'หมอนตุ๊กตา Lavender Kitty Cat',
+            colorName: 'สีม่วงลาเวนเดอร์ - น้องแมวเหมียว',
+            desc: 'น้องแมวสีม่วงลาเวนเดอร์ขนนุ่มปุย ดีไซน์น่ารักละมุนตา เป็นของขวัญวันเกิดหรือวันพิเศษได้ทุกโอกาส',
+            oldPrice: 490,
+            price: 329,
+            stock: 18,
+            rating: '5.0 (228)'
+          },
+          {
+            id: 'plush-5',
+            image: 'Pic/S__42606633_2.jpg',
+            fallbackImages: ['Pic/S__42606633.jpg', 'Pic/plush-5.jpg', 'Pic/plush-5.png'],
+            shape: 'plush-star',
+            pattern: 'fluffy',
+            baseColor: '#F3E09B',
+            pipingColor: '#DEC778',
+            swatch: '#F3E09B',
+            name: 'หมอนตุ๊กตา Pastel Yellow Star',
+            colorName: 'สีเหลืองพาสเทล - ดวงดาวยิ้ม',
+            desc: 'หมอนตุ๊กตารูปดวงดาวสีเหลืองพาสเทลนุ่มฟู ใช้หนุนงีบหลับหรือกอดเล่นได้ทุกวัย',
+            oldPrice: 450,
+            price: 289,
+            stock: 22,
+            rating: '4.9 (204)'
+          },
+          {
+            id: 'plush-6',
+            image: 'Pic/S__42606634_2.jpg',
+            fallbackImages: ['Pic/S__42606634.jpg', 'Pic/plush-6.jpg', 'Pic/plush-6.png'],
+            shape: 'plush-moon',
+            pattern: 'fluffy',
+            baseColor: '#EFE4D0',
+            pipingColor: '#D8CAB2',
+            swatch: '#EFE4D0',
+            name: 'หมอนตุ๊กตา Creamy Crescent Moon',
+            colorName: 'สีครีมนวล - พระจันทร์เสี้ยว',
+            desc: 'หมอนตุ๊กตาพระจันทร์เสี้ยวสีครีมนวลทรงโค้งรับอ้อมกอด ขนนุ่มฟูไม่หลุดร่วงง่าย',
+            oldPrice: 450,
+            price: 289,
+            stock: 20,
+            rating: '5.0 (242)'
+          }
+        ]
+      },
+      bolster: {
+        title: 'หมอนข้าง',
+        subtitle: 'หมอนข้างทรงกระบอกแน่นเด้ง กอดเต็มอ้อมแขน คืนตัวไวไม่ยุบแบน (6 ลาย/สี)',
+        items: [
+          {
+            id: 'bolster-1',
+            image: 'Pic/ข้างขาว.jpg',
+            fallbackImages: ['Pic/S__42606609.jpg', 'Pic/bolster-1.jpg', 'Pic/bolster-1.png'],
+            shape: 'bolster',
+            pattern: 'woven',
+            baseColor: '#F7F7F8',
+            pipingColor: '#E2E4E9',
+            swatch: '#F7F7F8',
+            name: 'หมอนข้าง Pure White Hotel',
+            colorName: 'สีขาวบริสุทธิ์ - ผ้าฝ้ายทอละเอียด',
+            desc: 'หมอนข้างใยไมโครเจลเกรดพรีเมียมสีขาวสะอาดตา แน่นกำลังดี กอดสบายตลอดคืน',
+            oldPrice: 520,
+            price: 349,
+            stock: 22,
+            rating: '4.9 (215)'
+          },
+          {
+            id: 'bolster-2',
+            image: 'Pic/S__42606610.jpg',
+            fallbackImages: ['Pic/ข้างดอก.jpg', 'Pic/bolster-2.jpg', 'Pic/bolster-2.png'],
+            shape: 'bolster',
+            pattern: 'ditsy-floral',
+            baseColor: '#F4EFE4',
+            pipingColor: '#DDD5C4',
+            swatch: '#E5B8BD',
+            name: 'หมอนข้าง Vintage Floral Garden',
+            colorName: 'สีครีม - ลายดอกไม้วินเทจ',
+            desc: 'ปลอกผ้าฝ้ายพิมพ์ลายดอกไม้โทนพาสเทลวินเทจ สัมผัสนุ่มเย็นสบายผิว ปลอกถอดซักได้',
+            oldPrice: 550,
+            price: 369,
+            stock: 19,
+            rating: '5.0 (198)'
+          },
+          {
+            id: 'bolster-3',
+            image: 'Pic/S__42606611.jpg',
+            fallbackImages: ['Pic/ข้างแดง.jpg', 'Pic/bolster-3.jpg', 'Pic/bolster-3.png'],
+            shape: 'bolster',
+            pattern: 'velvet',
+            baseColor: '#D68590',
+            pipingColor: '#BD6B76',
+            swatch: '#D68590',
+            name: 'หมอนข้าง Dusty Rose Velvet',
+            colorName: 'สีชมพูกุหลาบ - ผ้ากำมะหยี่นุ่มละมุน',
+            desc: 'ผ้ากำมะหยี่สีชมพูกุหลาบหรูหราสัมผัสนุ่มลื่นพิเศษ กอดอุ่นสบายไม่ระคายผิว',
+            oldPrice: 590,
+            price: 399,
+            stock: 17,
+            rating: '4.9 (184)'
+          },
+          {
+            id: 'bolster-4',
+            image: 'Pic/S__42606613.jpg',
+            fallbackImages: ['Pic/ข้างฟ้า.jpg', 'Pic/bolster-4.jpg', 'Pic/bolster-4.png'],
+            shape: 'bolster',
+            pattern: 'soft-clouds',
+            baseColor: '#9AC0E6',
+            pipingColor: '#7EA6CE',
+            swatch: '#9AC0E6',
+            name: 'หมอนข้าง Sky Cloudy Bolster',
+            colorName: 'สีฟ้าพาสเทล - ลายก้อนเมฆสีขาว',
+            desc: 'ปลอกผ้าคอตตอนสีฟ้าสดใสพิมพ์ลายก้อนเมฆสีขาวน่ารักละมุน ระบายอากาศดีเยี่ยม',
+            oldPrice: 550,
+            price: 369,
+            stock: 20,
+            rating: '5.0 (236)'
+          },
+          {
+            id: 'bolster-5',
+            image: 'Pic/S__42606612.jpg',
+            fallbackImages: ['Pic/ข้างม่วง.jpg', 'Pic/bolster-5.jpg', 'Pic/bolster-5.png'],
+            shape: 'bolster',
+            pattern: 'starry-gold',
+            baseColor: '#6C4B86',
+            pipingColor: '#53356B',
+            swatch: '#6C4B86',
+            name: 'หมอนข้าง Royal Purple Starry',
+            colorName: 'สีม่วงเข้ม - ลายดวงดาวสีทองเงิน',
+            desc: 'หมอนข้างสีม่วงเข้มพิมพ์ลายดาวเล็กสีทองและสีเงินสุดคลาสสิก ไส้แน่นคืนตัวไว',
+            oldPrice: 590,
+            price: 399,
+            stock: 16,
+            rating: '4.9 (172)'
+          },
+          {
+            id: 'bolster-6',
+            image: 'Pic/S__42606614.jpg',
+            fallbackImages: ['Pic/ข้างรุ้ง.jpg', 'Pic/bolster-6.jpg', 'Pic/bolster-6.png'],
+            shape: 'bolster',
+            pattern: 'rainbow-hearts',
+            baseColor: '#D8C7E8',
+            pipingColor: '#BFA9D4',
+            swatch: '#E5A8BA',
+            name: 'หมอนข้าง Pastel Rainbow Hearts',
+            colorName: 'สีพาสเทลไล่เฉด - ลายหัวใจสีขาว',
+            desc: 'ลายไล่เฉดสีมิ้นต์-ม่วง-ชมพูพาสเทลพร้อมลายหัวใจสีขาวน่ารักสดใส กอดนุ่มเต็มอ้อมแขน',
+            oldPrice: 590,
+            price: 399,
+            stock: 21,
+            rating: '5.0 (288)'
+          }
+        ]
+      }
+    };
+
+    let currentCategory = 'all';
+    let renderQueue = [];
+    let isRenderingQueue = false;
+    let cartItems = [];
+    let toastTimer = null;
+
+    // จัดการเมื่อโหลดไฟล์รูปไม่พบ ให้ลองไฟล์สำรองหรือแสดงภาพเรนเดอร์สตูดิโอแทน
+    function handleProductImgError(imgEl) {
+      let fallbacks = [];
+      try {
+        fallbacks = JSON.parse(imgEl.dataset.fallbacks || '[]');
+      } catch (e) {
+        fallbacks = [];
+      }
+      if (fallbacks.length > 0) {
+        const nextSrc = fallbacks.shift();
+        imgEl.dataset.fallbacks = JSON.stringify(fallbacks);
+        imgEl.src = nextSrc;
+      } else {
+        imgEl.style.display = 'none';
+      }
+    }
+
+    function enqueueCanvasRender(canvas) {
+      renderQueue.push(canvas);
+      if (!isRenderingQueue) {
+        isRenderingQueue = true;
+        requestAnimationFrame(processRenderQueue);
+      }
+    }
+
+    function processRenderQueue() {
+      const batchSize = 4;
+      for (let i = 0; i < batchSize && renderQueue.length > 0; i++) {
+        const canvas = renderQueue.shift();
+        if (canvas && canvas.isConnected) {
+          renderPhotorealisticPillow(canvas);
+        }
+      }
+      if (renderQueue.length > 0) {
+        requestAnimationFrame(processRenderQueue);
+      } else {
+        isRenderingQueue = false;
+      }
+    }
+
+    function adjustHexColor(hex, amount) {
+      const clean = (hex || '#F5F5F5').replace('#', '');
+      const full = clean.length === 3 ? clean.split('').map(c => c + c).join('') : clean;
+      const num = parseInt(full, 16);
+      const r = Math.min(255, Math.max(0, ((num >> 16) & 255) + amount));
+      const g = Math.min(255, Math.max(0, ((num >> 8) & 255) + amount));
+      const b = Math.min(255, Math.max(0, (num & 255) + amount));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    // วาดรูปทรงหมอนสตูดิโอมุมมอง 3/4 เหมือนภาพถ่ายจริง
+    function traceNormalPillowPath(ctx, shape, w, h) {
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+      ctx.beginPath();
+
+      if (shape === 'neck') {
+        ctx.moveTo(418, 108);
+        ctx.bezierCurveTo(585, 108, 725, 175, 736, 268);
+        ctx.bezierCurveTo(744, 345, 652, 424, 520, 424);
+        ctx.bezierCurveTo(426, 424, 376, 384, 384, 336);
+        ctx.bezierCurveTo(392, 294, 466, 262, 514, 240);
+        ctx.bezierCurveTo(465, 222, 376, 226, 334, 268);
+        ctx.bezierCurveTo(304, 298, 282, 358, 206, 358);
+        ctx.bezierCurveTo(132, 358, 96, 314, 106, 256);
+        ctx.bezierCurveTo(122, 164, 256, 108, 418, 108);
+        ctx.closePath();
+      } else if (shape === 'square') {
+        const hw = 158;
+        const hh = 152;
+        ctx.moveTo(cx - hw + 18, cy - hh);
+        ctx.quadraticCurveTo(cx, cy - hh + 24, cx + hw - 18, cy - hh);
+        ctx.quadraticCurveTo(cx + hw + 8, cy - hh, cx + hw + 2, cy - hh + 24);
+        ctx.quadraticCurveTo(cx + hw - 14, cy, cx + hw + 6, cy + hh - 20);
+        ctx.quadraticCurveTo(cx + hw + 10, cy + hh, cx + hw - 22, cy + hh);
+        ctx.quadraticCurveTo(cx, cy + hh - 6, cx - hw + 22, cy + hh);
+        ctx.quadraticCurveTo(cx - hw - 10, cy + hh, cx - hw - 6, cy + hh - 20);
+        ctx.quadraticCurveTo(cx - hw + 14, cy, cx - hw - 2, cy - hh + 24);
+        ctx.quadraticCurveTo(cx - hw - 8, cy - hh, cx - hw + 18, cy - hh);
+        ctx.closePath();
+      } else if (shape === 'blanket') {
+        ctx.moveTo(148, 224);
+        ctx.bezierCurveTo(215, 145, 345, 118, 435, 128);
+        ctx.bezierCurveTo(515, 148, 575, 185, 610, 218);
+        ctx.bezierCurveTo(585, 255, 515, 305, 395, 336);
+        ctx.bezierCurveTo(295, 355, 215, 315, 148, 224);
+        ctx.closePath();
+      } else if (shape === 'round') {
+        ctx.arc(cx, cy, 152, 0, Math.PI * 2);
+      } else if (shape === 'heart') {
+        ctx.moveTo(cx, cy + 145);
+        ctx.bezierCurveTo(cx - 195, cy + 25, cx - 185, cy - 135, cx - 75, cy - 135);
+        ctx.bezierCurveTo(cx - 25, cy - 135, cx, cy - 95, cx, cy - 75);
+        ctx.bezierCurveTo(cx, cy - 95, cx + 25, cy - 135, cx + 75, cy - 135);
+        ctx.bezierCurveTo(cx + 185, cy - 135, cx + 195, cy + 25, cx, cy + 145);
+        ctx.closePath();
+      } else if (shape === 'plush-cloud') {
+        ctx.moveTo(260, 355);
+        ctx.bezierCurveTo(185, 355, 165, 275, 225, 240);
+        ctx.bezierCurveTo(220, 175, 295, 150, 340, 185);
+        ctx.bezierCurveTo(375, 120, 465, 120, 500, 185);
+        ctx.bezierCurveTo(545, 150, 620, 175, 615, 240);
+        ctx.bezierCurveTo(675, 275, 655, 355, 580, 355);
+        ctx.closePath();
+      } else if (shape === 'plush-bunny') {
+        ctx.moveTo(420, 118);
+        ctx.bezierCurveTo(465, 118, 525, 168, 535, 265);
+        ctx.bezierCurveTo(542, 338, 495, 392, 420, 392);
+        ctx.bezierCurveTo(345, 392, 298, 338, 305, 265);
+        ctx.bezierCurveTo(315, 168, 375, 118, 420, 118);
+        ctx.closePath();
+      } else if (shape === 'plush-bear') {
+        ctx.ellipse(420, 268, 122, 126, 0, 0, Math.PI * 2);
+      } else if (shape === 'plush-cat') {
+        ctx.moveTo(325, 170);
+        ctx.lineTo(342, 108);
+        ctx.lineTo(388, 145);
+        ctx.quadraticCurveTo(420, 140, 452, 145);
+        ctx.lineTo(498, 108);
+        ctx.lineTo(515, 170);
+        ctx.bezierCurveTo(535, 205, 525, 245, 492, 262);
+        ctx.bezierCurveTo(515, 295, 515, 355, 495, 388);
+        ctx.lineTo(345, 388);
+        ctx.bezierCurveTo(325, 355, 325, 295, 348, 262);
+        ctx.bezierCurveTo(315, 245, 305, 205, 325, 170);
+        ctx.closePath();
+      } else if (shape === 'plush-star') {
+        const outerR = 165;
+        const innerR = 82;
+        const pts = 5;
+        for (let i = 0; i < pts * 2; i++) {
+          const r = i % 2 === 0 ? outerR : innerR;
+          const angle = (i * Math.PI) / pts - Math.PI / 2;
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + 12 + Math.sin(angle) * r;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+      } else if (shape === 'plush-moon') {
+        ctx.moveTo(485, 118);
+        ctx.bezierCurveTo(345, 105, 268, 215, 298, 318);
+        ctx.bezierCurveTo(324, 405, 435, 425, 528, 362);
+        ctx.bezierCurveTo(542, 352, 535, 336, 518, 340);
+        ctx.bezierCurveTo(445, 356, 385, 315, 385, 250);
+        ctx.bezierCurveTo(385, 185, 442, 148, 502, 154);
+        ctx.bezierCurveTo(518, 155, 512, 122, 485, 118);
+        ctx.closePath();
+      } else if (shape === 'bolster') {
+        ctx.roundRect(cx - 285, cy - 88, 570, 176, 82);
+      } else {
+        const hw = 278;
+        const hh = 132;
+        ctx.moveTo(cx - hw + 52, cy - hh);
+        ctx.quadraticCurveTo(cx, cy - hh - 14, cx + hw - 52, cy - hh);
+        ctx.quadraticCurveTo(cx + hw + 12, cy - hh, cx + hw + 8, cy - hh + 48);
+        ctx.quadraticCurveTo(cx + hw + 22, cy + 8, cx + hw + 14, cy + hh - 34);
+        ctx.quadraticCurveTo(cx + hw + 10, cy + hh, cx + hw - 56, cy + hh);
+        ctx.quadraticCurveTo(cx, cy + hh + 12, cx - hw + 56, cy + hh);
+        ctx.quadraticCurveTo(cx - hw - 10, cy + hh, cx - hw - 14, cy + hh - 34);
+        ctx.quadraticCurveTo(cx - hw - 22, cy + 8, cx - hw - 8, cy - hh + 48);
+        ctx.quadraticCurveTo(cx - hw - 12, cy - hh, cx - hw + 52, cy - hh);
+        ctx.closePath();
+      }
+    }
+
+    // วาดลวดลายผ้าทั้งหมดให้ครบตามแบบสินค้าจริง
+    function drawNormalFabricPattern(ctx, item, w, h) {
+      const pat = item.pattern || 'woven';
+      ctx.save();
+
+      if (pat === 'rainbow-hearts') {
+        const rbGrad = ctx.createLinearGradient(135, 0, w - 135, 0);
+        rbGrad.addColorStop(0, '#B5D8CF');
+        rbGrad.addColorStop(0.48, '#C8B9DF');
+        rbGrad.addColorStop(1, '#DDA4B3');
+        ctx.fillStyle = rbGrad;
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.88)';
+        for (let row = 0; row < 8; row++) {
+          const y = 165 + row * 26;
+          const offsetX = (row % 2) * 14;
+          for (let col = 0; col < 22; col++) {
+            const x = 140 + col * 28 + offsetX;
+            ctx.beginPath();
+            ctx.moveTo(x, y + 4);
+            ctx.bezierCurveTo(x - 6, y - 1, x - 5, y - 7, x, y - 3);
+            ctx.bezierCurveTo(x + 5, y - 7, x + 6, y - 1, x, y + 4);
+            ctx.fill();
+          }
+        }
+      } else if (pat === 'starry-gold') {
+        for (let row = 0; row < 8; row++) {
+          const y = 165 + row * 26;
+          const offsetX = (row % 2) * 14;
+          for (let col = 0; col < 22; col++) {
+            const x = 140 + col * 28 + offsetX;
+            ctx.fillStyle = (row + col) % 3 === 0 ? '#D4D8E2' : '#E2C378';
+            ctx.beginPath();
+            for (let i = 0; i < 10; i++) {
+              const r = i % 2 === 0 ? 4.2 : 1.9;
+              const a = (i * Math.PI) / 5 - Math.PI / 2;
+              if (i === 0) ctx.moveTo(x + Math.cos(a) * r, y + Math.sin(a) * r);
+              else ctx.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r);
+            }
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+      } else if (pat === 'soft-clouds') {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+        for (let row = 0; row < 8; row++) {
+          const y = 165 + row * 25;
+          const offsetX = (row % 2) * 18;
+          for (let col = 0; col < 18; col++) {
+            const x = 135 + col * 36 + offsetX;
+            ctx.beginPath();
+            ctx.arc(x - 5, y + 2, 4.2, 0, Math.PI * 2);
+            ctx.arc(x, y - 1, 5.5, 0, Math.PI * 2);
+            ctx.arc(x + 5, y + 2, 4.2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      } else if (pat === 'ditsy-floral') {
+        const pCanvas = document.createElement('canvas');
+        pCanvas.width = 96;
+        pCanvas.height = 96;
+        const pCtx = pCanvas.getContext('2d');
+
+        const drawMiniFlower = (fx, fy, petalColor) => {
+          pCtx.strokeStyle = '#7E917B';
+          pCtx.lineWidth = 1.2;
+          pCtx.beginPath();
+          pCtx.moveTo(fx, fy + 16);
+          pCtx.quadraticCurveTo(fx - 2, fy + 8, fx, fy);
+          pCtx.moveTo(fx, fy + 10);
+          pCtx.lineTo(fx - 5, fy + 6);
+          pCtx.moveTo(fx, fy + 7);
+          pCtx.lineTo(fx + 5, fy + 3);
+          pCtx.stroke();
+
+          pCtx.fillStyle = petalColor;
+          for (let a = 0; a < 5; a++) {
+            const ang = (a * Math.PI * 2) / 5;
+            pCtx.beginPath();
+            pCtx.arc(fx + Math.cos(ang) * 3.5, fy + Math.sin(ang) * 3.5, 2.3, 0, Math.PI * 2);
+            pCtx.fill();
+          }
+          pCtx.fillStyle = '#E5C675';
+          pCtx.beginPath();
+          pCtx.arc(fx, fy, 1.4, 0, Math.PI * 2);
+          pCtx.fill();
+        };
+
+        drawMiniFlower(24, 24, '#DFA6AE');
+        drawMiniFlower(72, 28, '#9FBBD8');
+        drawMiniFlower(46, 56, '#E4B5BC');
+        drawMiniFlower(20, 74, '#9FBBD8');
+        drawMiniFlower(76, 76, '#DFA6AE');
+
+        const pattern = ctx.createPattern(pCanvas, 'repeat');
+        if (pattern) {
+          ctx.fillStyle = pattern;
+          ctx.fillRect(0, 0, w, h);
+        }
+      } else if (pat === 'vintage-bouquet') {
+        const cx = w * 0.5;
+        const cy = h * 0.5 + 8;
+        ctx.strokeStyle = '#899E86';
+        ctx.lineWidth = 1.8;
+        [[-55, -45], [55, -40], [-65, 35], [60, 40], [0, -68]].forEach(([dx, dy]) => {
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.quadraticCurveTo(cx + dx * 0.5, cy + dy * 0.8, cx + dx, cy + dy);
+          ctx.stroke();
+        });
+        const roses = [
+          [cx - 34, cy - 8, 22, '#D8A3A8'],
+          [cx + 6, cy + 16, 24, '#D5C7AE'],
+          [cx + 42, cy + 28, 21, '#D5989C'],
+          [cx - 8, cy - 42, 16, '#E8DFCF']
+        ];
+        roses.forEach(([rx, ry, r, col]) => {
+          ctx.fillStyle = col;
+          ctx.beginPath();
+          ctx.arc(rx, ry, r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(110, 82, 85, 0.35)';
+          ctx.lineWidth = 1.3;
+          ctx.beginPath();
+          ctx.arc(rx, ry, r * 0.55, 0, Math.PI * 1.6);
+          ctx.stroke();
+        });
+      } else if (pat === 'pastel-bows') {
+        const bowColors = ['#DFA8B2', '#B7D4BE', '#C6B6E0', '#E8D296'];
+        let idx = 0;
+        for (let row = 0; row < 6; row++) {
+          for (let col = 0; col < 6; col++) {
+            const bx = 290 + col * 52 + (row % 2) * 14;
+            const by = 135 + row * 48;
+            ctx.fillStyle = bowColors[idx % bowColors.length];
+            idx++;
+            ctx.beginPath();
+            ctx.moveTo(bx, by);
+            ctx.lineTo(bx - 13, by - 7);
+            ctx.lineTo(bx - 13, by + 7);
+            ctx.closePath();
+            ctx.moveTo(bx, by);
+            ctx.lineTo(bx + 13, by - 7);
+            ctx.lineTo(bx + 13, by + 7);
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+      } else if (pat === 'gingham') {
+        ctx.fillStyle = 'rgba(138, 155, 174, 0.24)';
+        for (let x = 120; x < w - 120; x += 28) {
+          ctx.fillRect(x, 110, 14, 300);
+        }
+        for (let y = 110; y < h - 110; y += 28) {
+          ctx.fillRect(120, y, 600, 14);
+        }
+      } else if (pat === 'sage-leaves') {
+        const sprigDark = '#3D4E3B';
+        const dotCream = '#F4EFE0';
+        const dotYellow = '#E5D59E';
+
+        const pCanvas = document.createElement('canvas');
+        pCanvas.width = 160;
+        pCanvas.height = 160;
+        const pCtx = pCanvas.getContext('2d');
+
+        const drawSprig = (x, y, rot, scale) => {
+          pCtx.save();
+          pCtx.translate(x, y);
+          pCtx.rotate(rot);
+          pCtx.scale(scale, scale);
+          pCtx.strokeStyle = sprigDark;
+          pCtx.lineWidth = 1.25;
+          pCtx.lineCap = 'round';
+
+          pCtx.beginPath();
+          pCtx.moveTo(-14, 2);
+          pCtx.quadraticCurveTo(0, -1, 14, 1);
+          pCtx.stroke();
+
+          const leafPairs = [-9, -3, 3, 9];
+          leafPairs.forEach((lx) => {
+            pCtx.beginPath();
+            pCtx.ellipse(lx + 2, -4.5, 4.2, 1.8, -0.55, 0, Math.PI * 2);
+            pCtx.stroke();
+
+            pCtx.beginPath();
+            pCtx.ellipse(lx + 2, 4.5, 4.2, 1.8, 0.55, 0, Math.PI * 2);
+            pCtx.stroke();
+          });
+          pCtx.beginPath();
+          pCtx.ellipse(16, 1, 4.2, 1.7, 0.05, 0, Math.PI * 2);
+          pCtx.stroke();
+          pCtx.restore();
+        };
+
+        drawSprig(34, 30, -0.45, 0.95);
+        drawSprig(116, 42, 0.65, 0.9);
+        drawSprig(76, 92, -0.15, 1.0);
+        drawSprig(28, 128, 0.52, 0.88);
+        drawSprig(128, 126, -0.72, 0.92);
+
+        const drawDotCluster = (x, y, color) => {
+          pCtx.fillStyle = color;
+          pCtx.beginPath();
+          pCtx.arc(x, y, 2.0, 0, Math.PI * 2);
+          pCtx.arc(x + 5, y + 2, 1.7, 0, Math.PI * 2);
+          pCtx.arc(x + 2, y + 5.5, 1.6, 0, Math.PI * 2);
+          pCtx.fill();
+        };
+
+        drawDotCluster(74, 26, dotCream);
+        drawDotCluster(142, 78, dotYellow);
+        drawDotCluster(22, 78, dotCream);
+        drawDotCluster(84, 138, dotCream);
+        drawDotCluster(112, 86, dotYellow);
+
+        const pattern = ctx.createPattern(pCanvas, 'repeat');
+        if (pattern) {
+          ctx.fillStyle = pattern;
+          ctx.fillRect(0, 0, w, h);
+        }
+      }
+      ctx.restore();
+    }
+
+    // วาดรายละเอียดตัวการ์ตูนบนหมอนตุ๊กตาทั้ง 6 แบบ
+    function drawPlushCharacterDetails(ctx, shape, baseColor, pipingColor, w, h) {
+      ctx.save();
+      const darkStroke = '#262228';
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      const drawCuteFace = (fx, fy, eyeGap, eyeR, mouthW, noseColor) => {
+        ctx.fillStyle = darkStroke;
+        ctx.beginPath();
+        ctx.arc(fx - eyeGap, fy, eyeR, 0, Math.PI * 2);
+        ctx.arc(fx + eyeGap, fy, eyeR, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(fx - eyeGap - eyeR * 0.3, fy - eyeR * 0.3, eyeR * 0.32, 0, Math.PI * 2);
+        ctx.arc(fx + eyeGap - eyeR * 0.3, fy - eyeR * 0.3, eyeR * 0.32, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (noseColor) {
+          ctx.fillStyle = noseColor;
+          ctx.beginPath();
+          ctx.ellipse(fx, fy + 10, 7, 4.5, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.strokeStyle = darkStroke;
+        ctx.lineWidth = 2.6;
+        ctx.beginPath();
+        if (noseColor) {
+          ctx.moveTo(fx, fy + 14);
+          ctx.lineTo(fx, fy + 21);
+          ctx.moveTo(fx - mouthW, fy + 19);
+          ctx.quadraticCurveTo(fx - mouthW * 0.5, fy + 27, fx, fy + 21);
+          ctx.quadraticCurveTo(fx + mouthW * 0.5, fy + 27, fx + mouthW, fy + 19);
+        } else {
+          ctx.moveTo(fx - mouthW, fy + 10);
+          ctx.quadraticCurveTo(fx, fy + 22, fx + mouthW, fy + 10);
+        }
+        ctx.stroke();
+      };
+
+      if (shape === 'plush-cloud') {
+        drawCuteFace(w * 0.5, 255, 32, 6.5, 16, null);
+      } else if (shape === 'plush-bunny') {
+        ctx.fillStyle = baseColor;
+        ctx.strokeStyle = pipingColor;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.moveTo(378, 128);
+        ctx.bezierCurveTo(325, 102, 285, 185, 296, 252);
+        ctx.bezierCurveTo(306, 268, 336, 242, 354, 182);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#F3D2D6';
+        ctx.beginPath();
+        ctx.ellipse(322, 198, 12, 34, 0.32, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = baseColor;
+        ctx.beginPath();
+        ctx.moveTo(462, 128);
+        ctx.bezierCurveTo(515, 102, 555, 185, 544, 252);
+        ctx.bezierCurveTo(534, 268, 504, 242, 486, 182);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#F3D2D6';
+        ctx.beginPath();
+        ctx.ellipse(518, 198, 12, 34, -0.32, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = baseColor;
+        ctx.beginPath();
+        ctx.ellipse(298, 282, 16, 28, 0.35, 0, Math.PI * 2);
+        ctx.ellipse(542, 282, 16, 28, -0.35, 0, Math.PI * 2);
+        ctx.ellipse(374, 388, 24, 12, 0, 0, Math.PI * 2);
+        ctx.ellipse(466, 388, 24, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        drawCuteFace(420, 238, 36, 7, 17, '#D48292');
+      } else if (shape === 'plush-bear') {
+        ctx.fillStyle = baseColor;
+        ctx.strokeStyle = pipingColor;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.arc(335, 162, 32, 0, Math.PI * 2);
+        ctx.arc(505, 162, 32, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#F4EFE4';
+        ctx.beginPath();
+        ctx.arc(337, 164, 17, 0, Math.PI * 2);
+        ctx.arc(503, 164, 17, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#F7F4EC';
+        ctx.beginPath();
+        ctx.ellipse(420, 248, 36, 26, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = baseColor;
+        ctx.beginPath();
+        ctx.roundRect(306, 282, 112, 42, 21);
+        ctx.roundRect(422, 282, 112, 42, 21);
+        ctx.ellipse(368, 388, 26, 12, 0, 0, Math.PI * 2);
+        ctx.ellipse(472, 388, 26, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        drawCuteFace(420, 232, 42, 6.8, 16, '#A38873');
+      } else if (shape === 'plush-cat') {
+        ctx.strokeStyle = baseColor;
+        ctx.lineWidth = 24;
+        ctx.beginPath();
+        ctx.moveTo(495, 365);
+        ctx.bezierCurveTo(548, 365, 558, 315, 542, 290);
+        ctx.stroke();
+
+        ctx.fillStyle = '#C7B0E3';
+        ctx.beginPath();
+        ctx.ellipse(420, 215, 30, 21, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = darkStroke;
+        ctx.lineWidth = 2.2;
+        [-1, 1].forEach((dir) => {
+          [198, 208, 218].forEach((wy, idx) => {
+            ctx.beginPath();
+            ctx.moveTo(420 + dir * 44, wy);
+            ctx.lineTo(420 + dir * 68, wy + (idx - 1) * 4);
+            ctx.stroke();
+          });
+        });
+
+        drawCuteFace(420, 196, 36, 6.5, 14, darkStroke);
+      } else if (shape === 'plush-star') {
+        drawCuteFace(420, 255, 36, 7.2, 15, null);
+      } else if (shape === 'plush-moon') {
+        drawCuteFace(342, 258, 22, 6.2, 12, null);
+      }
+      ctx.restore();
+    }
+
+    // วาดภาพหมอนสตูดิโอแบบสมบูรณ์ลงบน Canvas เมื่อไม่มีไฟล์รูปภาพจริง
+    function renderPhotorealisticPillow(canvas) {
+      let item = {};
+      try {
+        item = JSON.parse(canvas.dataset.item || '{}');
+      } catch (e) {
+        item = {};
+      }
+      const w = 840;
+      const h = 520;
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      const baseColor = item.baseColor || '#F7F7F8';
+      const pipingColor = item.pipingColor || adjustHexColor(baseColor, -24);
+      const shape = item.shape || 'pillow';
+
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
+      bgGrad.addColorStop(0, '#FAFAFA');
+      bgGrad.addColorStop(1, '#F3F3F2');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.save();
+      const shadowY = shape === 'neck' ? 408 : shape.startsWith('plush-') ? 404 : h * 0.5 + 136;
+      const shadowGrad = ctx.createRadialGradient(w * 0.5, shadowY, 15, w * 0.5, shadowY, 260);
+      shadowGrad.addColorStop(0, 'rgba(35, 34, 32, 0.22)');
+      shadowGrad.addColorStop(0.65, 'rgba(35, 34, 32, 0.06)');
+      shadowGrad.addColorStop(1, 'rgba(35, 34, 32, 0)');
+      ctx.fillStyle = shadowGrad;
+      ctx.beginPath();
+      ctx.ellipse(w * 0.5, shadowY, 260, 24, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      traceNormalPillowPath(ctx, shape, w, h);
+      ctx.fillStyle = baseColor;
+      ctx.fill();
+
+      ctx.save();
+      ctx.clip();
+
+      drawNormalFabricPattern(ctx, item, w, h);
+
+      const lightGrad = ctx.createRadialGradient(w * 0.42, h * 0.34, 24, w * 0.5, h * 0.52, 370);
+      lightGrad.addColorStop(0, 'rgba(255, 255, 255, 0.38)');
+      lightGrad.addColorStop(0.55, 'rgba(255, 255, 255, 0.04)');
+      lightGrad.addColorStop(1, 'rgba(25, 22, 30, 0.22)');
+      ctx.fillStyle = lightGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      if (shape === 'blanket') {
+        ctx.strokeStyle = adjustHexColor(pipingColor, -15);
+        ctx.lineWidth = 3;
+        ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        ctx.moveTo(195, 210);
+        ctx.quadraticCurveTo(380, 185, 565, 212);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      ctx.restore();
+
+      traceNormalPillowPath(ctx, shape, w, h);
+      ctx.strokeStyle = adjustHexColor(pipingColor, -10);
+      ctx.lineWidth = shape === 'square' || shape === 'round' ? 3.5 : 1.8;
+      ctx.stroke();
+      ctx.restore();
+
+      if (shape.startsWith('plush-')) {
+        drawPlushCharacterDetails(ctx, shape, baseColor, pipingColor, w, h);
+      }
+    }
+
+    // สร้างการ์ดสินค้า 1 ชิ้น
+    function createProductCard(item, index) {
+      const safeFallbacks = JSON.stringify(item.fallbackImages || []).replace(/"/g, '&quot;');
+      const safeRenderData = JSON.stringify({
+        shape: item.shape,
+        pattern: item.pattern,
+        baseColor: item.baseColor,
+        pipingColor: item.pipingColor
+      }).replace(/"/g, '&quot;');
+
+      return `
+        <article class="bg-white rounded-3xl border border-purple-100/90 p-5 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <!-- กรอบรูปภาพถ่ายสตูดิโอ -->
+            <div class="relative rounded-2xl overflow-hidden studio-photo-box h-56 sm:h-60 flex items-center justify-center mb-4 border border-purple-100/70">
+              <span class="absolute top-3 left-3 z-20 px-3 py-1 rounded-full bg-white/95 border border-purple-200/80 text-purple-700 text-[11px] font-semibold shadow-2xs">
+                ลาย/สีที่ ${index + 1}
+              </span>
+              <span class="absolute top-3 right-3 z-20 w-5 h-5 rounded-full border border-white shadow-xs" style="background-color: ${item.swatch};"></span>
+
+              <canvas
+                class="studio-fallback-canvas w-full h-full object-contain p-3"
+                data-item="${safeRenderData}"
+              ></canvas>
+              <img
+                src="${item.image}"
+                alt="${item.name}"
+                data-fallbacks="${safeFallbacks}"
+                onload="this.classList.remove('opacity-0'); this.classList.add('opacity-100');"
+                onerror="handleProductImgError(this)"
+                class="opacity-0 transition-opacity duration-300 absolute inset-0 z-10 w-full h-full object-contain p-3"
+              />
+            </div>
+
+            <!-- ป้ายชื่อสี/ลาย -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-[11px] font-medium mb-2">
+              <span class="w-2 h-2 rounded-full" style="background-color: ${item.swatch};"></span>
+              <span>${item.colorName}</span>
+            </div>
+
+            <!-- ชื่อสินค้าและคะแนนรีวิว -->
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-base sm:text-lg font-bold text-[#2D2438] leading-snug">${item.name}</h3>
+              <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-500 shrink-0 mt-0.5">
+                ★ ${item.rating}
+              </span>
+            </div>
+
+            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed line-clamp-2">
+              ${item.desc}
+            </p>
+          </div>
+
+          <!-- ราคา สถานะคงเหลือ และปุ่มเพิ่มลงตะกร้า -->
+          <div class="mt-4 pt-3.5 border-t border-slate-100 flex items-end justify-between gap-2">
+            <div>
+              <span class="text-xs text-slate-400 line-through block">฿${item.oldPrice.toLocaleString()}</span>
+              <span class="text-xl font-bold text-[#7E22CE]">฿${item.price.toLocaleString()}</span>
+              <span class="inline-flex items-center gap-1 text-[11px] text-emerald-600 font-medium mt-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                คงเหลือ ${item.stock} ชิ้น
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onclick="addToCart('${item.id}')"
+              class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-gradient-to-r from-[#A855F7] to-[#9333EA] hover:opacity-95 text-white text-xs sm:text-sm font-semibold shadow-sm transition cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              <span>เพิ่มลงตะกร้า</span>
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    // แสดงรายการสินค้าตามหมวดหมู่ที่เลือก (หรือทั้งหมด 36 แบบ)
+    function renderCatalog(catKey) {
+      const container = document.getElementById('catalog-container');
+      if (!container) return;
+
+      renderQueue = [];
+      const keysToRender = catKey === 'all' ? Object.keys(categoryData) : [catKey];
+
+      container.innerHTML = keysToRender.map((key) => {
+        const cat = categoryData[key];
+        if (!cat) return '';
+        const cardsHtml = cat.items.map((item, idx) => createProductCard(item, idx)).join('');
+
+        return `
+          <section class="space-y-5">
+            <div class="bg-white/90 backdrop-blur-xs rounded-3xl border border-purple-100/90 px-6 py-5 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-[#2D2438]">${cat.title}</h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-0.5">${cat.subtitle}</p>
+              </div>
+              <span class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-purple-100/80 text-purple-700 text-xs font-semibold shrink-0 self-start sm:self-center">
+                ทั้งหมด ${cat.items.length} แบบ
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              ${cardsHtml}
+            </div>
+          </section>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.studio-fallback-canvas').forEach(enqueueCanvasRender);
+    }
+
+    // สลับหมวดหมู่สินค้าเมื่อกดปุ่มหัวข้อด้านบน
+    function selectCategory(catKey) {
+      currentCategory = catKey;
+
+      document.querySelectorAll('.folder-btn').forEach((btn) => {
+        const btnCat = btn.dataset.cat;
+        if (btnCat === 'all') {
+          if (catKey === 'all') {
+            btn.className = 'folder-btn px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold text-xs sm:text-sm shadow-md transition cursor-pointer';
+          } else {
+            btn.className = 'folder-btn px-6 py-3 rounded-2xl bg-white hover:bg-purple-50 text-purple-700 border-2 border-purple-200 font-semibold text-xs sm:text-sm transition cursor-pointer';
+          }
+        } else {
+          if (btnCat === catKey) {
+            btn.className = 'folder-btn flex items-center justify-between px-4 py-3.5 rounded-2xl bg-purple-100/90 border-2 border-purple-500 text-purple-900 transition cursor-pointer text-left shadow-sm';
+          } else {
+            btn.className = 'folder-btn flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/95 hover:bg-purple-50 border-2 border-purple-100 text-[#2D2438] transition cursor-pointer text-left shadow-2xs';
+          }
+        }
+      });
+
+      renderCatalog(catKey);
+    }
+
+    // ค้นหาข้อมูลสินค้าจากทุกหมวดหมู่ด้วย ID
+    function findProductById(productId) {
+      for (const key of Object.keys(categoryData)) {
+        const found = categoryData[key].items.find((item) => item.id === productId);
+        if (found) return found;
+      }
+      return null;
+    }
+
+    function updateCartBadge() {
+      const totalQty = cartItems.reduce((sum, item) => sum + (item.qty || 1), 0);
+      const badge = document.getElementById('cart-badge');
+      if (badge) {
+        badge.textContent = totalQty;
+      }
+    }
+
+    function addToCart(productId) {
+      const product = findProductById(productId);
+      if (!product) return;
+
+      // โหลดรายการตะกร้าล่าสุดจาก localStorage เพื่อซิงค์ข้ามทุกหน้า
+      try {
+        const saved = JSON.parse(localStorage.getItem('cloudy_pillow_cart') || '[]');
+        if (Array.isArray(saved)) cartItems = saved;
+      } catch (e) {}
+
+      const existing = cartItems.find((item) => item.id === productId);
+      if (existing) {
+        existing.qty = (existing.qty || 1) + 1;
+      } else {
+        cartItems.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          qty: 1
+        });
+      }
+
+      try {
+        localStorage.setItem('cloudy_pillow_cart', JSON.stringify(cartItems));
+      } catch (e) {}
+
+      updateCartBadge();
+
+      if (typeof window.syncGlobalCartLinks === 'function') {
+        window.syncGlobalCartLinks();
+      } else {
+        const allIds = [];
+        cartItems.forEach((it) => {
+          for (let i = 0; i < (it.qty || 1); i++) allIds.push(it.id);
+        });
+        const query = '?items=' + encodeURIComponent(allIds.join(','));
+        document.querySelectorAll('a[href*="cart.html"]').forEach((link) => {
+          link.href = 'cart.html' + query;
+        });
+      }
+
+      const toastBox = document.getElementById('toast-box');
+      const toastText = document.getElementById('toast-text');
+      if (toastBox && toastText) {
+        toastText.textContent = `เพิ่ม "${product.name}" ลงตะกร้าแล้ว`;
+        toastBox.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastBox.classList.add('hidden');
+        }, 3200);
+      }
+    }
+
+    // เริ่มต้นแสดงสินค้าทั้งหมดทันทีเมื่อโหลดหน้าเว็บเสร็จสมบูรณ์
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('cloudy_pillow_cart') || '[]');
+        if (Array.isArray(saved)) cartItems = saved;
+      } catch (e) {}
+      selectCategory('all');
+      updateCartBadge();
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
